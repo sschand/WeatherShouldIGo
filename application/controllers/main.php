@@ -5,10 +5,10 @@ class Main extends CI_Controller {
 		parent::__construct();
 		// When encountering No Access Control Origin issues
 	    $this->load->library('PHPRequests');
-	}	
+	}
 	public function index()
 	{
-		$this->load->view('index');	
+		$this->load->view('index');
 	}
 	public function get_pics()
 	{
@@ -18,14 +18,42 @@ class Main extends CI_Controller {
 
 	    $weather = trim($this->input->post('weather'));
 
-		$url = "https://api.instagram.com/v1/tags/".$location.$weather."/media/recent?callback=?&count=10&access_token=2205178294.324cf62.a569c4db3a394908bfa806cfafae2397"; 
+		$url = "https://api.instagram.com/v1/tags/".$location.$weather."/media/recent?callback=?&count=10&access_token=2205178294.324cf62.a569c4db3a394908bfa806cfafae2397";
 
 	    $html = file_get_contents($url);
-		
+
 		$this->output
   			 ->set_content_type('application/json')
-	         ->set_output($html);	
+	         ->set_output($html);
 	}
+
+	//function to add the marker photos
+	public function change_marker(){
+
+      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  var icons = {
+    snow: {
+      icon: iconBase + 'img/snow.png'
+    },
+    sunn: {
+      icon: iconBase + 'img/sun.jpeg'
+    },
+    rain: {
+      icon: iconBase + 'img/rain.png'
+    },
+    fog:{
+      icon: iconBase + 'img/fog.png'
+    }
+  };
+
+  function addMarker(feature) {
+    var marker = new google.maps.Marker({
+      position: feature.position,
+      icon: icons[feature.type].icon,
+      map: map
+    });
+  }
+}
 }
 
 //end of main controller
