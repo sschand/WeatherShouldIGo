@@ -7,8 +7,11 @@
 	<script src="/assets/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
+<div class="other">
+	
+</div>
 
-<div class="container">
+<div class="main container">
 	<h1>Weather should I go?</h1>
 	<form action="/main/get_pics" method="post">
 	    <div class="row">
@@ -31,7 +34,7 @@
 	    </div>
 	</form>
 	<div id="results">
-	<div id="loading"></div>
+	<div id="loading"><img src="/assets/images/weathers.png" alt=""></div>
 	<div id="images"></div>
 </div>
 </div>
@@ -42,14 +45,28 @@
 	     $('form').submit(function() {
 
 			// this will be shown while user is waiting for response
-			$('#loading').html("<img src='assets/spinner.gif'>");
+			$('#loading').html("<img src='assets/images/spinner.gif'>");
 			$('#images').html("");	    
 
 			$.post($(this).attr('action'), $(this).serialize(), function(res) {
 		    	var images_string = "";
+		    	var weather = $('#weather').val();
+		    	console.log('weather is '+weather);
+
 		    	if(res.data.length > 0){
-	    			for (var i = 0; i < res.data.length; i++) {
-				        images_string +='<img src='+res.data[i].images.low_resolution.url+'>';
+		    		console.log(res.data);
+		    		// console.log(res.data[i].tags.length);
+	    			for (var i = 0; i < res.data.length; i++) {	
+
+	    			  	// for (var i = 0; i < res.data[i].tags.length; i++) {	
+    			  		console.log(res.data[i].tags);
+    			  		if(res.data[i].tags.includes(weather)){
+    			  			console.log('yes!!');
+    			  			images_string +='<img src='+res.data[i].images.low_resolution.url+'>';
+    			  		}	    				
+			       	}
+			       	if(images_string.length < 1){
+			       		images_string += "NONE";
 			       	}
 		    	}else{
 		    		images_string += "<h2>No images found :(</h2>";

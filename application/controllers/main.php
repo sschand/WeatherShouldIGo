@@ -18,7 +18,7 @@ class Main extends CI_Controller {
 
 	    $weather = trim($this->input->post('weather'));
 
-		$url = "https://api.instagram.com/v1/tags/".$location.$weather."/media/recent?callback=?&count=10&access_token=2205178294.324cf62.a569c4db3a394908bfa806cfafae2397"; 
+		$url = "https://api.instagram.com/v1/tags/".$location.$weather."/media/recent?callback=?&count=300&access_token=2205178294.324cf62.a569c4db3a394908bfa806cfafae2397"; 
 
 	    $html = file_get_contents($url);
 		
