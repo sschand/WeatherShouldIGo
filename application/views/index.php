@@ -35,7 +35,7 @@
 	    </div>
 	</form>
 	<div id="results">
-	<div id="loading"><img src="/assets/images/weathers.png" alt=""></div>
+	<div id="loading"></div>
 	<div id="images"></div>
 </div>
 </div>
