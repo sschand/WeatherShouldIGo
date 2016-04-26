@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="shortcut icon" type="image/x-icon" href="/weathers.ico" />
 	<title>Weather should I go?</title>
 	<link rel="stylesheet" type="text/css" href="/assets/css/skeleton.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
@@ -30,14 +31,12 @@
 	    	</div>
 	    	<div class="four columns">
 	    		<button type="submit" class="button-primary">Submit</button>
-	    	</div>	    
+	    	</div>
 	    </div>
 	</form>
 	<div id="results">
-	<div id="loading"><img src="/assets/images/weathers.png" alt=""></div>
-	<div class="row">
-		<div id="images"></div>
-	</div>
+	<div id="loading"></div>
+	<div id="images"></div>
 </div>
 </div>
 
