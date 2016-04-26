@@ -33,16 +33,16 @@ class Main extends CI_Controller {
       var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
   var icons = {
     snow: {
-      icon: iconBase + 'img/snow.png'
+      icon: iconBase + '/assets/img/snow.png'
     },
     sunn: {
-      icon: iconBase + 'img/sun.jpeg'
+      icon: iconBase + '/assets/img/sun.jpeg'
     },
     rain: {
-      icon: iconBase + 'img/rain.png'
+      icon: iconBase + '/assets/img/rain.png'
     },
     fog:{
-      icon: iconBase + 'img/fog.png'
+      icon: iconBase + '/assets/img/fog.png'
     }
   };
 
