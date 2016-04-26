@@ -1,5 +1,11 @@
 //https://airport.api.aero/airport/nearest/31.46273/-99.33304/?user_key=47b0e35381e6f8e41c97f5eb08e30661
 
+$(document).ready(function() {
+    //Hide the show cities button until submitted
+    $('.button').hide();
+    //On page load, focus on the input box
+    $('#userradius').focus();
+})
 //Function for map initialization and getting weather by distance
 function initMap() {
 
@@ -34,10 +40,8 @@ function initMap() {
           Thunderstorm: '/assets/images/rain.png'
         };
 
-
-
-    $(document).ready(function(){
         var selected = $('.selectButton').val();
+
         $('.w').click(function() {
             $(this).addClass('selectButton');
             $(this).siblings().removeClass('selectButton');
@@ -48,14 +52,6 @@ function initMap() {
             }
         })
 
-
-
-        //Hide the show cities button until submitted
-        $('.button').hide();
-
-        //On page load, focus on the input box
-        $('#userradius').focus();
-
         //the value of userradius
         var userRad;
 
@@ -63,24 +59,14 @@ function initMap() {
         $('#radiusForm').submit(function(){
             userRad = $('#userradius').val();
 
-            // UserInfo.getInfo(function(data) {
-                // console.log(data);
+            if (navigator.geolocation) {
 
-                // var userlat = data.position.latitude;
-                // var userlon = data.position.longitude;
-
-
-                //Need to provide X for .coords.latitude
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(user) {
-                        // console.log(user.coords.latitude);
-                        xlat = user.coords.latitude;
-                        // console.log(user.coords.longitude);
-                        xlon = user.coords.longitude;
+                navigator.geolocation.getCurrentPosition(function(user) {
+                xlat = user.coords.latitude;
+                xlon = user.coords.longitude;
 
                 var userlat = xlat;
                 var userlon = xlon;
-                // console.log(x);
 
                 var lonleft = userlon-(userRad/50);
                 var latbottom =userlat+(userRad/70);
@@ -91,6 +77,7 @@ function initMap() {
                            lonleft+','+latbottom+','+lonright+','+lattop+','+'6'
                            +"&cluster=yes&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
 
+                var markers = [];
 
                 $.get(url, function(res){
 
@@ -98,40 +85,43 @@ function initMap() {
 
                     console.log(res);
 
+                    for(var i = 0; i < res.list.length; i++){
 
-                        for(var i = 0; i < res.list.length; i++){
+                        if(res.list[i].weather[0].main == selected && res.list[i].coord.lat > 18.481872){
 
-                            if(res.list[i].weather[0].main == selected){
+                            var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
 
-                                if (res.list[i].coord.lat > 18.481872) {
+                            var typeofthing = res.list[i].weather[0].main;
 
-                                    var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
+                            var marker = new google.maps.Marker({
+                              position: cityPos,
+                              map: map,
+                              title: res.list[i].name,
+                              type: typeofthing,
+                              icon: icons[typeofthing]
+                            });
 
-                                    var typeofthing = res.list[i].weather[0].main;
 
-                                    var marker = new google.maps.Marker({
-                                      position: cityPos,
-                                      map: map,
-                                      title: res.list[i].name,
-                                      type: typeofthing,
-                                      icon: icons[typeofthing]
-                                    });
+                            marker.addListener('click', function() {
+                                var name = this.title;
+                                var type = this.type;
 
-                                    marker.addListener('click', function() {
-                                        var name = this.title;
-                                        var type = this.type;
+                                $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
 
-                                        $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
+                                $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
 
-                                        $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+                                getInstagram(name, type);
+                            })
 
-                                        getInstagram(name, type);
-                                    })
+                            markers.push(marker);
 
-                                    html_str += "<div class='four columns'><h5>City: " + res.list[i].name + "</h5><p>Weather: " + res.list[i].weather[0].main + "</p></div>";
-                                }
-                            }
+                            // markers[0].setMap(null); Removes marker at markers[0]
+                            // markers[0].setMap(map); Adds marker at markers[0]
+
+                            html_str += "<div class='four columns'><h5>City: " + res.list[i].name + "</h5><p>Weather: " + res.list[i].weather[0].main + "</p></div>";
                         }
+                    }
+                    console.log('Markers: ', markers);
                     //put the list of cities into cities.
                     $('.cities').html(html_str);
 
@@ -144,23 +134,13 @@ function initMap() {
             } else {
             x.innerHTML = 'Geolocation is not supported by this browser.';
             }
-            //Endof userdata
-            // }, function(err) {
-              // the "err" object contains useful information in case of an error
-            //   console.log(err);
-            // });
 
             //Show some things on submitting
             $('.button').fadeIn();
 
-            //Not reaching this x
-            // console.log(x);
-
             //Prevent form from refreshing the page on submitting
             return false;
         })
-    //End of Document Ready
-    });
 //End of Init Map
 }
 
@@ -215,5 +195,4 @@ function getInstagram(name, weather) {
       $('#images').html(images_string);
         $('input').val('');
     }, 'json');
-
 }
