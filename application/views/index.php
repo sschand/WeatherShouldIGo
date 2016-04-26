@@ -14,8 +14,10 @@
 	<link rel="stylesheet" type="text/css" href="/assets/css/skeleton.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<script src="/assets/jquery.min.js" type="text/javascript"></script>
+	<script src="/assets/map.js"></script>
 </head>
 <body>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	      <div class="container">
 	        <div class="navbar-header">
@@ -38,9 +40,65 @@
 	      </div>
 	    </nav>
 
+
+<div class="container">
+	<!-- Input -->
+	<div id='radiusbox'>
+		<form id="radiusForm">
+			<input type=text id=userradius>
+			<input type=submit>
+		</form>
+	</div>
+
+	<!-- Map -->
+	<div id='map'></div>
+
+	<!-- Details: Name of city and also weather condition -->
+	<div class="details">
+		<!-- Name of the City -->
+		<h4 class="name"></h4>
+		<!-- Current Weather condition -->
+		<div class="deets"></div>
+	</div>
+	<!-- Button to show list of cities -->
+	<div class="row">
+		<button type="button" class="button">Show Cities</button>
+	</div>
+
+	<!-- Cities that we have listed -->
+	<div class='cities row'></div>
+</div> <!--End of Container-->
+
+<script type="text/javascript">
+	$('.cities').slideToggle();
+
+	var clicker = 0;
+
+	$('.button').click(function() {
+		if (clicker == 1) {
+			$(this).text('Hide Cities');
+		} else {
+			$(this).text('Show Cities');
+		}
+		$('.cities').slideToggle();
+		if (clicker == 1) {
+			clicker = 0;
+		} else {
+			clicker = 1;
+		}
+	});
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7vM_BGlGGOKxYmh7qMjb9NM1r8iLZHmc&callback=initMap">
+</script>
+
+<!-- END OF MAP -->
+
+
 <div class="main container">
 	<h1>Weather should I go?</h1>
-	<form action="/main/get_pics" method="post">
+	<form action="/main/get_pics" method="post" id="instagram">
 	    <div class="row">
 	    	<div class="one columns">
 	    		<label for="city">City: </label>
@@ -69,7 +127,7 @@
 
 <script>
 	$(document).ready(function() {
-	     $('form').submit(function() {
+	     $('#instagram').submit(function() {
 
 			// this will be shown while user is waiting for response
 			$('#loading').html("<img src='assets/images/spinner.gif'>");

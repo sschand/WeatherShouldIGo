@@ -2,10 +2,34 @@ label{
 	display: inline;
 }
 
+
 body{
 	padding-top:90px;
 }
 nav{
 	background: transparent !important;
 	border-bottom: 2px solid black;
+
+}
+
+#map{
+	height: 500px;
+	width: 100%;
+}
+.details {
+	text-align: center;
+	margin-top: 1em;
+	/*border-bottom: 1px solid rgba(136, 136, 136, 0.76);*/
+}
+.four {
+	margin: 0;
+	padding: 1em;
+
+}
+.row {
+	text-align: center;
+}
+.button {
+	margin-top: 1em;
+	float: right;
 }
