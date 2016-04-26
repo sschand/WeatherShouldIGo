@@ -10,6 +10,10 @@ class Main extends CI_Controller {
     {
         $this->load->view('index');
     }
+    public function map()
+    {
+        $this->load->view('map');
+    }
     public function get_pics()
     {
         $this->load->library('PHPRequests');
