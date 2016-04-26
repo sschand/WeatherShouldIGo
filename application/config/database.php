@@ -8,22 +8,16 @@ if(ENVIRONMENT == 'production')
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = 'root';
-<<<<<<< HEAD
 	$db['default']['database'] = 'windstagram';
-=======
-	$db['default']['database'] = '';
->>>>>>> f8f768d5f74f3abac2ccd8065316c4e18ba7c883
 }
 else
 {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = 'root';
-<<<<<<< HEAD
+
 	$db['default']['database'] = 'windstagram';
-=======
-	$db['default']['database'] = '';
->>>>>>> f8f768d5f74f3abac2ccd8065316c4e18ba7c883
+
 }
 
 $db['default']['dbdriver'] = 'mysql';
