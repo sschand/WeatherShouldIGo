@@ -53,16 +53,23 @@
 
   <div class="weather">
   	<div class="row">
-			<div class="col-md-6 col-md-6">
-				<input type="submit" value="Snow">
-				<input type="submit" value="Rain">
-				<input type="submit" value="Fog">
-				<input type="submit" value="Snow">
-				<input type="submit" value="Snow">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="row">
+						<input class="w1 w" type="submit" value="Snow">
+						<input class="w2 w" type="submit" value="Rain">
+						<input class="w3 w" type="submit" value="sun">
+				</div>
+				<div class="row">
+					<input class="w4 w" type="submit" value="Drizzle">
+					<input class="w5 w" type="submit" value="Fog">
+					<input class="w6 w" type="submit" value="All Weather">
+				</div>
+
+					</div>
+				</div>
 			</div>
 
-  	</div>
-  </div>
+
 	<!-- Map -->
 	<div id='map'></div>
 

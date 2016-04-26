@@ -33,3 +33,34 @@ nav{
 	margin-top: 1em;
 	float: right;
 }
+
+.w{
+	padding: 30px 12px !important;
+	width:115px !important;
+	text-align: center;
+}
+
+.w1{
+	background: url(/assets/images/snow.png) no-repeat center top;
+	/*background-size: 200px;*/
+}
+
+.w2{
+	background: url(/assets/images/rain.png) no-repeat center top;
+	/*background-size: 200px;*/
+}
+
+.w3{
+	background: url(/assets/images/sun1.png) no-repeat center top;
+	/*background-size: 200px;*/
+}
+
+.w4{
+	background: url(/assets/images/drizzle.png) no-repeat center top;
+	background-size: 40px;
+}
+
+.w5{
+	background: url(/assets/images/fog.png) no-repeat center top;
+	/*background-size: 200px;*/
+}
