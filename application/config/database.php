@@ -7,15 +7,15 @@ if(ENVIRONMENT == 'production')
 {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
-	$db['default']['password'] = '';
-	$db['default']['database'] = '';
+	$db['default']['password'] = 'root';
+	$db['default']['database'] = 'windstagram';
 }
 else
 {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
-	$db['default']['password'] = '';
-	$db['default']['database'] = '';
+	$db['default']['password'] = 'root';
+	$db['default']['database'] = 'windstagram';
 }
 
 $db['default']['dbdriver'] = 'mysql';

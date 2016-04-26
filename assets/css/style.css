@@ -1,6 +1,11 @@
 label{
 	display: inline;
 }
-img{
 
+body{
+	padding-top:90px;
+}
+nav{
+	background: transparent !important;
+	border-bottom: 2px solid black;
 }
