@@ -37,6 +37,19 @@ function initMap() {
 
 
     $(document).ready(function(){
+        var selected = $('.selectButton').val();
+        $('.w').click(function() {
+            $(this).addClass('selectButton');
+            $(this).siblings().removeClass('selectButton');
+            console.log($(this).val());
+            selected = $('.selectButton').val();
+            if (selected == 'sun') {
+                selected = 'Clear';
+            }
+        })
+
+
+
         //Hide the show cities button until submitted
         $('.button').hide();
 
@@ -88,7 +101,7 @@ function initMap() {
 
                         for(var i = 0; i < res.list.length; i++){
 
-                            if(res.list[i].weather[0].main != ''){
+                            if(res.list[i].weather[0].main == selected){
 
                                 if (res.list[i].coord.lat > 18.481872) {
 

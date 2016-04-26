@@ -62,7 +62,7 @@
 				<div class="row">
 					<input class="w4 w" type="submit" value="Drizzle">
 					<input class="w5 w" type="submit" value="Fog">
-					<input class="w6 w" type="submit" value="All Weather">
+					<input class="w6 w buttonSelect" type="submit" value="All Weather">
 				</div>
 
 					</div>
@@ -94,7 +94,7 @@
 
 	var clicker = 0;
 
-	$('.button').click(function() {
+	$('#showButton').click(function() {
 		if (clicker == 1) {
 			$(this).text('Hide Cities');
 		} else {
