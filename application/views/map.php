@@ -53,22 +53,12 @@ $this->session->set_userdata('userlon',0);
     </style>
 
     <script>
-    //Latitude: 37.377221299999995
-    //Longitude: -121.91188149999999
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(x) {
-            console.log(x.coords.latitude);
-            console.log(x.coords.longitude);
-        });
-    } else {
-        x.innerHTML = 'Geolocation is not supported by this browser.';
-    }
-
-
+    //https://airport.api.aero/airport/nearest/31.46273/-99.33304/?user_key=47b0e35381e6f8e41c97f5eb08e30661
 
     //Function for map initialization and getting weather by distance
     function initMap() {
 
+            //Where map center is
             var myLatLng = {lat: 39.8282, lng: -98.5795};
             //SAN JOSE: lat: 37.34605, lng: -121.8878
             //CENTER OF US: lat: 39.8282, lng: 98.5795
