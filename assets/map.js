@@ -21,17 +21,14 @@ $(document).ready(function() {
 })
 //Function for map initialization and getting weather by distance
 function initMap() {
-
         //Where map center is
         var myLatLng = {lat: 39.8282, lng: -98.5795};
         //SAN JOSE: lat: 37.34605, lng: -121.8878
         //CENTER OF US: lat: 39.8282, lng: -98.5795
-
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,//8 for local view, 4 for national view
           center: myLatLng
         });
-
         var icons = {
           Snow: '/assets/images/snow.png',
           Clear: '/assets/images/sun1.png',
@@ -39,91 +36,57 @@ function initMap() {
           Haze: '/assets/images/fog.png',
           Fog: '/assets/images/fog.png',
           Clouds: '/assets/images/cloud.png',
-
           //Need Mist: '/assets/images/mist.png'
           //Currently Placeholder
           Mist: '/assets/images/cloud.png',
-
           //Need Drizzle: '/assets/images/drizzle.png'
           //Currently Placeholder
           Drizzle: '/assets/images/rain.png',
-
           //Need Thunderstorm: '/assets/images/thunderstorm.png'
           //Currently Placeholder
           Thunderstorm: '/assets/images/rain.png',
-
           //Need Dust: '/assets/images/dust.png'
           //Currently Placeholder
           Dust: '/assets/images/fog.png'
         };
-
-        var selected = $('.selectButton').val();
-
-        $('.w').click(function() {
-            $(this).addClass('selectButton');
-            $(this).siblings().removeClass('selectButton');
-            console.log($(this).val());
-            selected = $('.selectButton').val();
-            if (selected == 'sun') {
-                selected = 'Clear';
-            }
-        })
-
-        //the value of userradius
-        var userRad;
-
-
-        //CENTER OF US: lat: 39.8282, lng: 98.5795
-
-
+        //long left, lat bot, long right, lat top for url + the 5th element
         var url = "http://api.openweathermap.org/data/2.5/box/city?bbox=-180,18,-67,50,6&cluster=yes&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
 
+        //Empty array for use for markers
         var markers = [];
 
         $.get(url, function(res){
 
-            var html_str = '';
-
             console.log(res);
 
+            //Makes markers that don't show up on map
             for(var i = 0; i < res.list.length; i++){
+                var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
+                var typeofthing = res.list[i].weather[0].main;
+                var marker = new google.maps.Marker({
+                  position: cityPos,
+                  map: null,
+                  title: res.list[i].name,
+                  type: typeofthing,
+                  icon: icons[typeofthing]
+                });
 
-                // if(res.list[i].weather[0].main == selected && res.list[i].coord.lat > 18.481872){
+                //Adds an event listener to each of the markers so clicking works
+                marker.addListener('click', function() {
+                    var name = this.title;
+                    var type = this.type;
+                    $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
+                    $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+                    //Gets the Instagram pictures (function on the bottom)
+                    getInstagram(name, type);
+                })
+                //Push them all into one array
+                markers.push(marker);
 
-                    var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
-
-                    var typeofthing = res.list[i].weather[0].main;
-
-                    var marker = new google.maps.Marker({
-                      position: cityPos,
-                      map: null,
-                      title: res.list[i].name,
-                      type: typeofthing,
-                      icon: icons[typeofthing]
-                    });
-
-                    marker.addListener('click', function() {
-                        var name = this.title;
-                        var type = this.type;
-
-                        $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
-
-                        $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
-
-                        getInstagram(name, type);
-                    })
-
-                    markers.push(marker);
-
-                    // markers[0].setMap(null); Removes marker at markers[0]
-                    // markers[0].setMap(map); Adds marker at markers[0]
-
-                    html_str += "<div class='four columns'><h5>City: " + res.list[i].name + "</h5><p>Weather: " + res.list[i].weather[0].main + "</p></div>";
-                // }
+                //How to show and remove (but not from the array)
+                // markers[0].setMap(null); Removes marker at markers[0]
+                // markers[0].setMap(map); Adds marker at markers[0]
             }
-            console.log('Markers: ', markers);
-            //put the list of cities into cities.
-            $('.cities').html(html_str);
 
             $(document).on('click', '.w', function(event) {
                 var weatherToMatch = this.value;
