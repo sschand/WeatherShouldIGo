@@ -207,3 +207,24 @@ table th{
 	background: url(/assets/images/fog.png) no-repeat center top;
 	/*background-size: 200px;*/
 }
+/*Weather Forecast*/
+.deets {
+    width: 100%;
+    padding-top: 1em;
+    /*background: rgba(180,180,180,0.1);*/
+    border-radius: 4px;
+}
+.deetsImgs {
+    /*margin-top: -2em;*/
+    margin-bottom: 0.5em;
+}
+.deetsImgs img {
+    height: 40px;
+}
+.split {
+    vertical-align: top;
+    display: inline-block;
+}
+.split h5 {
+    margin-top: -1.5em;
+}
