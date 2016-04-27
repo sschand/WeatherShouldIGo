@@ -74,34 +74,35 @@
 	  </nav>
 
 		<!--  login modal-->
-	  <div id="myModalLogin" class="modal fade" tabindex="-1" role="dialog">
-	    <div class="modal-dialog">
-	      <div class="modal-content login">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	          <h4 class="modal-title">Login</h4>
-	        </div>
-	        <div class="modal-body">
-	          <form action="/login/store_user_login" method=post id=loginform>
+		<div id="myModalLogin" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content login">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Login</h4>
+					</div>
+					<div class="modal-body">
+						<div class="error"></div>
+						<form action="/login/store_user_login" method="post" id="login_form">
 							<input type="hidden" name="action" value="login">
-	              <div class="">
-	                <input class="col-md-10" name="email_login" type="email" placeholder="Email">
+							<div class="">
+								<input class="col-md-10" id="email_login" name="email_login" type="email" placeholder="Email" required>
 
-	              </div>
-	              <div class="">
-	                  <input class="col-md-10" name="password_login" type="password" placeholder="Password">
+							</div>
+							<div class="">
+							<input class="col-md-10" id="password_login" name="password_login" type="password" placeholder="Password" required>
 
-	              </div>
+							</div>
 
-	              <input type="Submit" class="btn btn-default" value=Login id=loginbtn>
+							<input type="Submit" class="btn btn-default" value=Login id=loginbtn>
 
-	          </form>
-	        </div>
+						</form>
+					</div>
 
-	      </div><!-- /.modal-content -->
-	    </div><!-- /.modal-dialog -->
-	  </div><!-- /.modal -->
-	  
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
 		<!--  Register modal-->
 		<div id="myModalRegister" class="modal fade" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
@@ -143,13 +144,27 @@
 
 <div class="container">
 
+	<?php if ($this->session->flashdata('success_register')){ ?>
+	<div class="alert alert-success alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <strong><?php echo $this->session->flashdata('success_register'); ?></strong>
+	</div>
+	<?php } ?>
+
+
+	<?php if ($this->session->flashdata('match')){ ?>
+	<div class="alert alert-success alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <strong><?php echo $this->session->flashdata('match'); ?></strong>
+	</div>
+	<?php } ?>
   <div class="weather">
   	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="row">
-						<input class="w1 w" type="submit" value="Snow">
-						<input class="w2 w" type="submit" value="Rain">
-						<input class="w3 w" type="submit" value="sun">
+					<input class="w1 w" type="submit" value="Snow">
+					<input class="w2 w" type="submit" value="Rain">
+					<input class="w3 w" type="submit" value="sun">
 				</div>
 				<div class="row">
 					<input class="w4 w" type="submit" value="Drizzle">

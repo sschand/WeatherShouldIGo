@@ -9,9 +9,9 @@ class User extends CI_Model {
         return $this->db->insert_id();
     }
 
-      function get_user($name){
-        $query = "SELECT * FROM users WHERE email= ?";
-        $values=array($name);
+      function get_user($user_id){
+        $query = "SELECT * FROM users WHERE user_id= ?";
+        $values=array($user_id);
         return $this->db->query($query,$values)->row_array();
       }
 

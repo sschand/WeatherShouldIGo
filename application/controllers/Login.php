@@ -22,19 +22,15 @@ class Login extends CI_Controller {
 	public function store_user_register(){
 		$info = $this->input->post();
 		$user_id = $this->User->store_user_register($info);
-
 		$this->session->set_userdata('user_id', $user_id);
-		// redirect(base_url().'/login/get_user');
-		// }
-		echo $user_id;
-		echo "USER REGISTERED";
-		die();
+		redirect(base_url().'login/get_user');
 	}
 
+	//Grab user info and redirect to log in  
 	public function get_user(){
-    $user = $this->User->get_user($this->session->userdata['email']);
+    	$user = $this->User->get_user($this->session->userdata['user_id']);
 		$this->session->set_flashdata('success_register',"You were successfully registered, login to continue <i class='fa fa-flag-checkered' aria-hidden='true'></i>");
-    $data = array('user'=> $user);
+    	$data = array('user'=> $user);
 		redirect(base_url().'');
 	}
 
@@ -44,37 +40,34 @@ class Login extends CI_Controller {
 	}
 
 	public function store_user_login(){
+		$email = $this->session->userdata('user_email');
 
-			$this->form_validation->set_rules("email_login", "Email", "required|valid_email");
-			$this->form_validation->set_rules("password_login", "Password", "required");
+		$user = $this->User->store_user_login($email);
 
-		if ($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('index');
-		}
-		else
-		{
-		 $email = $this->input->post('email_login')	;
-		 $password = md5($this->input->post('password_login'));
-		 $user = $this->User->store_user_login($email);
+			$this->session->set_userdata('user_id',$user['user_id']);
+			$this->session->set_userdata('user_name',$user['user_name']);
+			redirect(base_url().'/Main');
 
-			 if($user && md5($user['password']) == $password){
-
-        $this->session->set_userdata('user_id',$user['user_id']);
-				$this->session->set_userdata('user_name',$user['user_name']);
-
-
-				redirect(base_url().'/Main');
-
-			 }
-			 else {
-				 $this->session->set_flashdata('match','<div class="match">Email and Password do not match!</div>');
-				 redirect(base_url().'');
-			 }
 
 	}
 
-}
+	public function validate_user($email, $password){
+		$user = $this->User->store_user_login($email);
+		$response = '';
+
+		if($user && $user['password'] == md5($password)){
+			$this->session->set_userdata('user_id', $user['user_id']);
+			$this->session->set_userdata('user_name', $user['user_name']);
+			$this->session->set_userdata('user_email', $email);
+			$response = "User and email correct";		
+		}else {
+			$response =  "Incorrect login";
+		}
+		echo $response;
+	}
+
+
+
 public function logged($name){
 	$this->session->set_userdata('city_name',$name);
 	if($this->session->userdata('user_id')){
