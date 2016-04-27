@@ -149,13 +149,19 @@ function getInstagram(name, weather) {
     // this will be shown while user is waiting for response
     $('#loading').html("<img src='assets/images/spinner.gif'>");
     $('#images').html("");
+
     $.post('https://api.instagram.com/v1/tags/'+name+weather+'/media/recent?callback=?&count=300&access_token=2205178294.324cf62.a569c4db3a394908bfa806cfafae2397', $(this).serialize(), function(res) {
         var images_string = "";
         var weatherType = weather;
         console.log('weather is '+weather);
-        $('.trip').html('<span><a href="/Login">Plan a Trip?</a></span>')
+        //$('h3.list').html("List of people going to "+name);
+        $('.trip').html('<span class="plan"><a href="/Login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
+        $('.span').click(function(){
+
+        })
         if(res.data.length > 0){
           console.log(res.data);
+
           // console.log(res.data[i].tags.length);
           for (var i = 0; i < res.data.length; i++) {
 

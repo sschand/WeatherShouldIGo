@@ -15,7 +15,7 @@ body{
 display: table;
 width: 100%;
 height: auto;
-padding: 100px 0;
+padding: 170px 0;
 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 color: #f4f4f4;
 background: url(/assets/images/sunset.jpg) no-repeat bottom center scroll;
@@ -34,7 +34,7 @@ p {
 }
 
 a {
-  color: #26a5d3;
+  color: white;
 }
 
 a:hover,
@@ -132,6 +132,22 @@ input#loginbtn{
 
 label{
 	display: inline;
+}
+
+h3{
+  text-align: center;
+}
+
+.plan{
+  color: white;
+  font-size: 2em;
+  position: relative;
+  left: 41%;
+
+}
+
+table th{
+  text-align: center;
 }
 
 

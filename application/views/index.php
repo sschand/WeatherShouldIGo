@@ -5,17 +5,13 @@
 	<title>Weather should I go?</title>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/skeleton.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<script src="/assets/jquery.min.js" type="text/javascript"></script>
@@ -40,10 +36,16 @@
 	            <a href="#page-top"></a>
 	          </li>
 	          <li class="page-scroll">
-	            <a href="#" data-toggle="modal" data-target="#myModalLogin">Login</a>
+							 <?php if($this->session->userdata('user_name')){
+								echo "<a href='/Main/mytrip'><span>Welcome, ".$this->session->userdata('user_name')."!</span></a>";
+							} else {
+	           echo '<a href="#" data-toggle="modal" data-target="#myModalLogin">Login</a>';}?>
 	          </li>
 	          <li class="page-scroll">
-	            <a href="#" data-toggle="modal" data-target="#myModalRegister" >Register</a>
+							<?php if($this->session->userdata('user_name')){
+								echo "<a href='/Login/logoff'>Log out</a>";
+								} else {
+	          echo '<a href="#" data-toggle="modal" data-target="#myModalRegister" >Register</a>';}?>
 	          </li>
 
 	        </ul>
@@ -61,7 +63,7 @@
 	        </div>
 	        <div class="modal-body">
 	          <form action="/login/store_user_login" method=post id=loginform>
-							<input type="hidden" name="action" value="login">
+
 	              <div class="">
 	                <input class="col-md-10" name="email_login" type="email" placeholder="Email">
 
@@ -89,7 +91,7 @@
 	        </div>
 	        <div class="modal-body" >
 	          <form class="form-horizontal" action="/login/store_user_register" method=post>
-							 <input type="hidden" name="action" value="register">
+
 	             <div >
 	              <input class="col-md-10" name ="name" type="text" placeholder="Full Name">
 
@@ -129,6 +131,7 @@
 <div class="container">
 
   <div class="weather">
+		<!-- <h3>WEATHER SHOULD I GO?</h3> -->
   	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="row">
@@ -157,6 +160,8 @@
 		<!-- Current Weather condition -->
 		<div class="deets"></div>
 	</div>
+
+<?= $this->session->flashdata('loggedFail');?>
 
 
 	<!-- Cities that we have listed -->
