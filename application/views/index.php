@@ -186,8 +186,13 @@
 		<h4 class="name"></h4>
 	</div>
 
+	<div class="row">
+		<div class="deets twelve columns" style="width: 100%"></div>
+	</div>
+
 
 	<!-- Cities that we have listed -->
+	<!-- I don't think we need this anymore -->
 	<div class='cities row'></div>
 </div> <!--End of Container-->
 

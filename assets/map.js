@@ -18,7 +18,7 @@ $(document).ready(function() {
     // $('nav').css('backgroundColor', 'rgba(180, 180, 180, 0.76)');
     $('nav.navbar.navbar-custom.navbar-fixed-top').css('backgroundColor', 'rgba(180,180,180,0.0)');
 
-    // Validate password and confirm password    
+    // Validate password and confirm password
     var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
 
     function validatePassword(){
@@ -102,7 +102,7 @@ function initMap() {
 
                 var cityUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+res.list[i].name+
                               "&units=imperial&cnt=7&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
-                
+
                 // console.log(cityUrl);
 
                 $.get(cityUrl, function(countryCheck){
@@ -119,16 +119,64 @@ function initMap() {
                             type: typeofthing,
                             icon: icons[typeofthing],
                             forecast: countryCheck.list
-                        });   
+                        });
 
                         //Adds an event listener to each of the markers so clicking works
                         marker.addListener('click', function() {
+                            var dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
                             var name = this.title;
                             var type = this.type;
-                            $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
-                            $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+                            $('.details').html('<h4>'+name+'</h4>');
+                            $('.deets').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+                            $('.deets').css('borderTop', '1px solid rgba(136, 136, 136, 0.76)');
+                            $('.deets').css('background', 'rgba(180, 180, 180, 0.1)');
+
+                            $('.deets').html('');
+                            console.log(this);
+
+                            for (var j = 0; j < this.forecast.length; j++) {
+                                var d = new Date(0);
+                                d.setUTCSeconds(this.forecast[j].dt);
+
+                                var day = d.getDay();
+                                var date = d.getDate();
+
+                                var deets = '<div class="split">';
+                                    deets += '<h4>'+dayName[day]+'</h4>';
+                                    deets += '<h5>'+date+'</h5>';
+                                    deets += '<div class="deetsImgs">';
+                                        +this.forecast[j].weather[0].main;
+                                        if (this.forecast[j].weather[0].main == "Clear") {
+                                            deets += '<img src="/assets/images/sun1.png">';
+                                        } else if (this.forecast[j].weather[0].main == "Clouds") {
+                                            deets += '<img src="/assets/images/cloud.png">';
+                                        } else if (this.forecast[j].weather[0].main == "Rain") {
+                                            deets += '<img src="/assets/images/rain.png">';
+                                        } else if (this.forecast[j].weather[0].main == "Drizzle") {
+                                            deets += '<img src="/assets/images/drizzle.png">';
+                                        } else if (this.forecast[j].weather[0].main == "Snow") {
+                                            deets += '<img src="/assets/images/snow.png">';
+                                        } else if (this.forecast[j].weather[0].main == "Fog") {
+                                            deets += '<img src="/assets/images/fog.png">';
+                                        } else {
+                                            deets += this.forecast[j].weather[0].main;
+                                        }
+                                    deets += '</div>';
+                                    deets += '<p>Min: '+Math.round(this.forecast[j].temp.min)+'&deg<br />';
+                                    deets += 'Max: '+Math.round(this.forecast[j].temp.max)+'&deg;</p>';
+                                deets += '</div>';
+
+                                var splitSize = $('.deets').width()/7;
+                                $('.split').css('width', splitSize);
+                                $('.deets').append(deets);
+                            }
+
                             //Gets the Instagram pictures (function on the bottom)
                             getInstagram(name, type);
+
+                            console.log(this.forecast);
+                            console.log('smoking is bad');
                         })
                         //Push them all into one array
                         markers.push(marker);
@@ -136,7 +184,7 @@ function initMap() {
                     }
 
                 }, 'json');
-                  
+
 
                 //How to show and remove (but not from the array)
                 // markers[0].setMap(null); Removes marker at markers[0]

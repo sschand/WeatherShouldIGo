@@ -209,7 +209,6 @@ table th{
 	background: url(/assets/images/fog.png) no-repeat center top;
 	/*background-size: 200px;*/
 }
-
 .form-event{
   border: 1px solid white;
   padding: 26px 35px;
@@ -221,4 +220,34 @@ table th{
 }
 .alert{
 	margin-bottom: 5px !important;
+}
+/*Weather Forecast*/
+.deets {
+    width: 100%;
+    padding-top: 1em;
+    /*background: rgba(180,180,180,0.1);*/
+    border-radius: 4px;
+}
+.deetsImgs {
+    /*margin-top: -2em;*/
+    margin-bottom: 0.5em;
+}
+.deetsImgs img {
+    height: 40px;
+}
+.split {
+    vertical-align: top;
+    display: inline-block;
+}
+.split h5 {
+    margin-top: -1.5em;
+}
+.trip {
+    margin-top: 1em;
+    margin-bottom: 0.75em;
+}
+.trip .plan a {
+    border: 1px solid rgba(180,180,180,0.7);
+    padding: 3px 1em;
+    border-radius: 4px;
 }
