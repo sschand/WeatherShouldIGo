@@ -14,13 +14,11 @@
 // }
 
 $(document).ready(function() {
-    //Hide the show cities button until submitted
-    $('.button').hide();
-    //On page load, focus on the input box
-    $('#userradius').focus();
+
     // $('nav').css('backgroundColor', 'rgba(180, 180, 180, 0.76)');
     $('nav.navbar.navbar-custom.navbar-fixed-top').css('backgroundColor', 'rgba(180,180,180,0.0)');
 })
+
 //Function for map initialization and getting weather by distance
 function initMap() {
         //Where map center is
@@ -67,32 +65,54 @@ function initMap() {
 
             //Makes markers that don't show up on map
             for(var i = 0; i < res.list.length; i++){
-                var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
-                var typeofthing = res.list[i].weather[0].main;
-                var marker = new google.maps.Marker({
-                  position: cityPos,
-                  map: null,
-                  title: res.list[i].name,
-                  type: typeofthing,
-                  icon: icons[typeofthing]
-                });
+                // var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
+                // var typeofthing = res.list[i].weather[0].main;
 
-                //Adds an event listener to each of the markers so clicking works
-                marker.addListener('click', function() {
-                    var name = this.title;
-                    var type = this.type;
-                    $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
-                    $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
-                    //Gets the Instagram pictures (function on the bottom)
-                    getInstagram(name, type);
-                })
-                //Push them all into one array
-                markers.push(marker);
+
+                var cityUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+res.list[i].name+
+                              "&units=imperial&cnt=7&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
+                
+                // console.log(cityUrl);
+
+                $.get(cityUrl, function(countryCheck){
+
+                    var cityPos = {lat: countryCheck.city.coord.lat , lng: countryCheck.city.coord.lon}
+                    var typeofthing = countryCheck.list[0].weather[0].main;
+
+                    if(countryCheck.city.country == 'US'){
+
+                        var marker = new google.maps.Marker({
+                            position: cityPos,
+                            map: null,
+                            title: countryCheck.city.name,
+                            type: typeofthing,
+                            icon: icons[typeofthing],
+                            forecast: countryCheck.list
+                        });   
+
+                        //Adds an event listener to each of the markers so clicking works
+                        marker.addListener('click', function() {
+                            var name = this.title;
+                            var type = this.type;
+                            $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
+                            $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+                            //Gets the Instagram pictures (function on the bottom)
+                            getInstagram(name, type);
+                        })
+                        //Push them all into one array
+                        markers.push(marker);
+
+                    }
+
+                }, 'json');
+                  
 
                 //How to show and remove (but not from the array)
                 // markers[0].setMap(null); Removes marker at markers[0]
                 // markers[0].setMap(map); Adds marker at markers[0]
             }
+
+            console.log('Done with initial city loading');
 
             $(document).on('click', '.w', function(event) {
                 var weatherToMatch = this.value;
