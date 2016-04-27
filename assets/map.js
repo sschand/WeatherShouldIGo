@@ -18,6 +18,8 @@ $(document).ready(function() {
     $('.button').hide();
     //On page load, focus on the input box
     $('#userradius').focus();
+    // $('nav').css('backgroundColor', 'rgba(180, 180, 180, 0.76)');
+    $('nav.navbar.navbar-custom.navbar-fixed-top').css('backgroundColor', 'rgba(180,180,180,0.0)');
 })
 //Function for map initialization and getting weather by distance
 function initMap() {
@@ -107,7 +109,7 @@ function initMap() {
                         // console.log(this);
                         if (weatherToMatch == markers[i].type) {
                             markers[i].setMap(map);
-                            console.log(markers[i]);
+                            // console.log(markers[i]);
                         } else {
                             markers[i].setMap(null);
                         }
@@ -115,7 +117,7 @@ function initMap() {
                 }
 
                 // markers[0].setMap(map);
-                console.log(this.value);
+                // console.log(this.value);
             })
 
         //End of Get
