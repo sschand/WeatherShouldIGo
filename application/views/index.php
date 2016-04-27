@@ -187,19 +187,15 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7vM_BGlGGOKxYmh7qMjb9NM1r8iLZHmc&callback=initMap">
 </script>
 
-<!-- END OF MAP -->
+	<div class="main container">
 
+		<div id="results">
+			<div id="loading"></div>
+			<div class="trip"></div>
+			<div id="images"></div>
+		</div>
+	</div>
 
-<div class="main container">
-
-	<div id="results">
-	<div id="loading"></div>
-	<div class="trip"></div>
-	<div id="images"></div>
-
-</div>
-</div>
-
-
+	<script src="/assets/nav.js"></script>
 </body>
 </html>
