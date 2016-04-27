@@ -200,8 +200,10 @@ function initMap() {
                     for (var i = 0; i < markers.length; i++) {
                         markers[i].setMap(map);
                     }
-                    // Remove images
+                    // Reset City Details, forecast, and  images
                     $("#images").html('');
+                    $(".details").html('<!-- Name of the City --><h4 class="name"></h4>');
+                    $(".spec_det").html('<div class="deets twelve columns" style="width: 100%"></div>');
 
                 } else {
                     if (weatherToMatch == 'sun') {
