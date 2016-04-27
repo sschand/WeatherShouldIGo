@@ -15,7 +15,7 @@ body{
 display: table;
 width: 100%;
 height: auto;
-padding: 170px 0;
+padding: 100px 0;
 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 color: #f4f4f4;
 background: url(/assets/images/sunset.jpg) no-repeat bottom center scroll;
@@ -93,7 +93,8 @@ a:focus {
 }
 
 nav{
-	background: transparent !important;
+	/*background: none !important;*/
+    /*background-color: rgba(180,180,180,0.76);*/
 	color:white !important;
 	border:none !important;
 }
