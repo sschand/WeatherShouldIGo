@@ -47,7 +47,11 @@
 	            <a href="#page-top"></a>
 	          </li>
 	          <li class="page-scroll">
+							<?php if($this->session->userdata('user_name')){
+							 echo "<a href='#'>Welcome ".$this->session->userdata('user_name')."!</a>";
+						 } else {?>
 	            <a href="#" data-toggle="modal" data-target="#myModalLogin">Login</a>
+							<?php } ?>
 	          </li>
 						<li class="page-scroll">
 							 <?php if($this->session->userdata('user_name')){
@@ -56,7 +60,12 @@
 	          </li>
 
 	          <li class="page-scroll">
+							<?php if($this->session->userdata('user_name')){
+							 echo "<a href='/login/logoff'>Log Out</a>";
+						 } else {?>
 	            <a href="#" data-toggle="modal" data-target="#myModalRegister" >Register</a>
+							<?php } ?>
+
 	          </li>
 
 	        </ul>

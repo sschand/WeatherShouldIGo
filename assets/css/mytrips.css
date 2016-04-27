@@ -1,0 +1,19 @@
+html{
+  width:100%;
+  height: 100%;
+}
+
+.list-group-item{
+  background: transparent !important;
+  color:white !important;
+}
+
+.list-group-item span{
+  border:1px solid white !important;
+  background: transparent !important;
+}
+.event-date{
+position: relative;
+right:40%;
+
+}

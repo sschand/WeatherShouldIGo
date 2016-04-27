@@ -78,8 +78,8 @@ class Login extends CI_Controller {
 public function logged($name){
 	$this->session->set_userdata('city_name',$name);
 	if($this->session->userdata('user_id')){
-		$this->User->insertCityByName($name,$this->session->userdata('user_id'));
-		$this->load->view('trip');
+		//$this->User->insertCityByName($name,$this->session->userdata('user_id'));
+		$this->load->view('newevent');
 	} else {
 		$this->session->set_flashdata('loggedFail','<script type="text/javascript">alert("Must be logged in to plan a trip!");</script>');
 		redirect(base_url().'');
