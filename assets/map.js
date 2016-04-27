@@ -1,5 +1,18 @@
 //https://airport.api.aero/airport/nearest/31.46273/-99.33304/?user_key=47b0e35381e6f8e41c97f5eb08e30661
 
+//Geolocation
+// if (navigator.geolocation) {
+//
+//     navigator.geolocation.getCurrentPosition(function(user) {
+//     xlat = user.coords.latitude;
+//     xlon = user.coords.longitude;
+//End of getting location
+
+// });
+// } else {
+// x.innerHTML = 'Geolocation is not supported by this browser.';
+// }
+
 $(document).ready(function() {
     //Hide the show cities button until submitted
     $('.button').hide();
@@ -12,7 +25,7 @@ function initMap() {
         //Where map center is
         var myLatLng = {lat: 39.8282, lng: -98.5795};
         //SAN JOSE: lat: 37.34605, lng: -121.8878
-        //CENTER OF US: lat: 39.8282, lng: 98.5795
+        //CENTER OF US: lat: 39.8282, lng: -98.5795
 
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,//8 for local view, 4 for national view
@@ -37,7 +50,11 @@ function initMap() {
 
           //Need Thunderstorm: '/assets/images/thunderstorm.png'
           //Currently Placeholder
-          Thunderstorm: '/assets/images/rain.png'
+          Thunderstorm: '/assets/images/rain.png',
+
+          //Need Dust: '/assets/images/dust.png'
+          //Currently Placeholder
+          Dust: '/assets/images/fog.png'
         };
 
         var selected = $('.selectButton').val();
@@ -55,92 +72,92 @@ function initMap() {
         //the value of userradius
         var userRad;
 
-        //On submit of the input box for radius
-        $('#radiusForm').submit(function(){
-            userRad = $('#userradius').val();
 
-            if (navigator.geolocation) {
-
-                navigator.geolocation.getCurrentPosition(function(user) {
-                xlat = user.coords.latitude;
-                xlon = user.coords.longitude;
-
-                var userlat = xlat;
-                var userlon = xlon;
-
-                var lonleft = userlon-(userRad/50);
-                var latbottom =userlat+(userRad/70);
-                var lonright = userlon+(userRad/50);
-                var lattop = userlat-(userRad/70);
-
-                var url = "http://api.openweathermap.org/data/2.5/box/city?bbox="+
-                           lonleft+','+latbottom+','+lonright+','+lattop+','+'6'
-                           +"&cluster=yes&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
-
-                var markers = [];
-
-                $.get(url, function(res){
-
-                    var html_str = '';
-
-                    console.log(res);
-
-                    for(var i = 0; i < res.list.length; i++){
-
-                        if(res.list[i].weather[0].main == selected && res.list[i].coord.lat > 18.481872){
-
-                            var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
-
-                            var typeofthing = res.list[i].weather[0].main;
-
-                            var marker = new google.maps.Marker({
-                              position: cityPos,
-                              map: map,
-                              title: res.list[i].name,
-                              type: typeofthing,
-                              icon: icons[typeofthing]
-                            });
+        //CENTER OF US: lat: 39.8282, lng: 98.5795
 
 
-                            marker.addListener('click', function() {
-                                var name = this.title;
-                                var type = this.type;
+        var url = "http://api.openweathermap.org/data/2.5/box/city?bbox=-180,18,-67,50,6&cluster=yes&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
 
-                                $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
+        var markers = [];
 
-                                $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+        $.get(url, function(res){
 
-                                getInstagram(name, type);
-                            })
+            var html_str = '';
 
-                            markers.push(marker);
+            console.log(res);
 
-                            // markers[0].setMap(null); Removes marker at markers[0]
-                            // markers[0].setMap(map); Adds marker at markers[0]
+            for(var i = 0; i < res.list.length; i++){
 
-                            html_str += "<div class='four columns'><h5>City: " + res.list[i].name + "</h5><p>Weather: " + res.list[i].weather[0].main + "</p></div>";
+                // if(res.list[i].weather[0].main == selected && res.list[i].coord.lat > 18.481872){
+
+                    var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
+
+                    var typeofthing = res.list[i].weather[0].main;
+
+                    var marker = new google.maps.Marker({
+                      position: cityPos,
+                      map: null,
+                      title: res.list[i].name,
+                      type: typeofthing,
+                      icon: icons[typeofthing]
+                    });
+
+                    marker.addListener('click', function() {
+                        var name = this.title;
+                        var type = this.type;
+
+                        $('.details').html('<h4>'+name+'</h4><p>'+type+'</p>');
+
+                        $('.details').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+
+                        getInstagram(name, type);
+                    })
+
+                    markers.push(marker);
+
+                    // markers[0].setMap(null); Removes marker at markers[0]
+                    // markers[0].setMap(map); Adds marker at markers[0]
+
+                    html_str += "<div class='four columns'><h5>City: " + res.list[i].name + "</h5><p>Weather: " + res.list[i].weather[0].main + "</p></div>";
+                // }
+            }
+            console.log('Markers: ', markers);
+            //put the list of cities into cities.
+            $('.cities').html(html_str);
+
+            $(document).on('click', '.w', function(event) {
+                var weatherToMatch = this.value;
+
+                if (weatherToMatch == 'All Weather') {
+                    for (var i = 0; i < markers.length; i++) {
+                        markers[i].setMap(map);
+                    }
+                } else {
+                    if (weatherToMatch == 'sun') {
+                        weatherToMatch = 'Clear';
+                    }
+                    for (var i = 0; i < markers.length; i++) {
+                        // console.log(this);
+                        if (weatherToMatch == markers[i].type) {
+                            markers[i].setMap(map);
+                            console.log(markers[i]);
+                        } else {
+                            markers[i].setMap(null);
                         }
                     }
-                    console.log('Markers: ', markers);
-                    //put the list of cities into cities.
-                    $('.cities').html(html_str);
+                }
 
-                //End of Get
-                }, 'json');
+                // markers[0].setMap(map);
+                console.log(this.value);
+            })
 
-            //End of getting location
+        //End of Get
+        }, 'json');
 
-            });
-            } else {
-            x.innerHTML = 'Geolocation is not supported by this browser.';
-            }
 
-            //Show some things on submitting
-            $('.button').fadeIn();
+    //Show some things on submitting
+    $('.button').fadeIn();
 
-            //Prevent form from refreshing the page on submitting
-            return false;
-        })
 //End of Init Map
 }
 
