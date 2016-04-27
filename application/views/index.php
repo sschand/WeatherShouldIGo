@@ -47,7 +47,11 @@
 	            <a href="#page-top"></a>
 	          </li>
 	          <li class="page-scroll">
+							<?php if($this->session->userdata('user_name')){
+							 echo "<a href='#'>Welcome ".$this->session->userdata('user_name')."!</a>";
+						 } else {?>
 	            <a href="#" data-toggle="modal" data-target="#myModalLogin">Login</a>
+							<?php } ?>
 	          </li>
 						<li class="page-scroll">
 							 <?php if($this->session->userdata('user_name')){
@@ -56,7 +60,12 @@
 	          </li>
 
 	          <li class="page-scroll">
+							<?php if($this->session->userdata('user_name')){
+							 echo "<a href='/login/logoff'>Log Out</a>";
+						 } else {?>
 	            <a href="#" data-toggle="modal" data-target="#myModalRegister" >Register</a>
+							<?php } ?>
+
 	          </li>
 
 	        </ul>
@@ -92,52 +101,45 @@
 	      </div><!-- /.modal-content -->
 	    </div><!-- /.modal-dialog -->
 	  </div><!-- /.modal -->
+	  
 		<!--  Register modal-->
-	  <div id="myModalRegister" class="modal fade" tabindex="-1" role="dialog">
-	    <div class="modal-dialog">
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	          <h4 class="modal-title">Register</h4>
-	        </div>
-	        <div class="modal-body" >
-	          <form class="form-horizontal" action="/login/store_user_register" method=post>
-							 <input type="hidden" name="action" value="register">
-	             <div >
-	              <input class="col-md-10" name ="name" type="text" placeholder="Full Name">
+		<div id="myModalRegister" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Register</h4>
+					</div>
+					<div class="modal-body" >
+					<form id="register_form" class="form-horizontal" action="/login/store_user_register" method=post>
+							<input type="hidden" name="action" value="register">
+							<div >
+								<input id="name" class="col-md-10" name ="name" type="text" placeholder="Full name" required>
+							</div>
+							<div >
+								<input id="user_name" class="col-sm-10" name="user_name" type="text" placeholder="User name" required>
+							</div>
+							<div >
+								<input id="email" class="col-sm-10" name="email" type="email" placeholder="Email" class=emailinput required>
+							</div>
+							<div >
+								<input id="password" class="col-sm-10" name="password" type="password" placeholder="Password" minlength="8" required>
+							</div>
+							<div >
+								<input id="confirm_password" class="col-sm-10" name="confirm_password" type="password" placeholder="Confirm Password" required >
+							</div>
+							<div >
+								<input id="dob" class="col-sm-10" name="dob" type="text" onfocus="(this.type='date')" id="datepicker" placeholder="Date of Birth (must be at least 21 years)" required max="1995-04-29">  <!-- Date - for 21+ hard-coded for now  -->
+							</div>
+							<div class="">
+								<input type="submit" class="btn btn-default" value="Register" id="regbtn" required>
+							</div>
+						</form>
+					</div>
 
-	             </div>
-	             <div >
-	                <input class="col-sm-10" name="user_name" type="text" placeholder="User name">
-
-	             </div>
-	             <div >
-	              <input class="col-sm-10" name="email" type="email" placeholder="Email" class=emailinput>
-
-	             </div>
-	             <div >
-	                <input class="col-sm-10" name="password" type="password" placeholder="Password (8 char min)">
-
-	             </div>
-	             <div >
-	              <input class="col-sm-10" name="confirm_password" type="password" placeholder="Confirm Password">
-
-	             </div>
-	             <div >
-	                <input class="col-sm-10" name="dob" type="date" id="datepicker" placeholder="Date of Birth">
-
-	             </div>
-	             <div class="">
-	                <input type="submit" class="btn btn-default" value="Register" id="regbtn">
-	             </div>
-
-
-	          </form>
-	        </div>
-
-	      </div><!-- /.modal-content -->
-	    </div><!-- /.modal-dialog -->
-	  </div><!-- /.modal -->
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 
 <div class="container">
 

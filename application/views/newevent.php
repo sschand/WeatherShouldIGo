@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="/assets/css/skeleton.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="/assets/css/mytrips.css">
+
 	<script src="/assets/jquery.min.js" type="text/javascript"></script>
 	<script src="/assets/map.js"></script>
 </head>
@@ -38,6 +39,8 @@
   	            <a href="#page-top"></a>
   	          </li>
               <li class="page-scroll"><a href="/Main">Home</a></li>
+              <li class="page-scroll"><a href="/Trip">#MyTrips</a></li>
+
 	            <li class="page-scroll"><a href="/login/logoff">Log out</a></li>
 
 	          </ul>
@@ -49,32 +52,26 @@
 
 
         <div class="row">
-          <div class="col-md-6">
-            <h4>My #Trips</h4>
-
-            <ul class="list-group">
-              <?php foreach ($triplist as $trip): ?>
-                <li class="list-group-item">
-                  <a href="/Trip/getTripByid/<?=$trip['trip_id']?>/<?=$trip['user_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge">14</span>
-                </li>
-
-              <?php endforeach; ?>
-            </ul>
+          <div class="col-md-6 col-md-offset-3">
+            <?php if( $this->session->userdata('city_name')){
+              echo "<h3>You already have a plan for <a href='/Trip'>#".$this->session->userdata('city_name')."</a></h3>" ;
+            } else{ ?>
+            <h5 class="list">Create an event for #<?= $this->session->userdata('city_name')?></h5>
+            <div class="form-event">
+              <form action="/Trip/create_trip" method="post" class="form-horizontal">
+                <div class="form-group">
+                  <textarea name="description" class="form-control" rows="4" placeholder="write a description for your event"></textarea>
+                </div>
+                <div class="form-group">
+                  <span class="event-date">Pick a Date</span>
+                   <input type="date" name ="start_date" class="form-control" id="inputEmail3">
+                </div>
+                <input type=Submit value="Create a Trip" id="eventbtn">
+             </form>
             </div>
-            <div class="col-md-5 col-md-offset-1">
-              <h5>Trip Detail</h5>
-              <table class="table">
-                <tr>
-                  <th>Goers</th>
-                  <th>Date</th>
-                </tr>
-
-              </table>
-
-            </div>
-
-
-        </div>
+         </div>
+      </div>
+      <?php }?>
 
 
         </div>
@@ -82,7 +79,7 @@
 
 
 
-
+      </div>
 
 
 

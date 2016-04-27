@@ -2,12 +2,12 @@
 
 class User extends CI_Model {
 
-
-     function store_user_register($info){
-       $query = "INSERT INTO users (name, user_name, email, password, dob, created_at, updated_at) VALUES(?,?,?,?,?,?,?)";
-       $values = array($info["name"], $info['user_name'], $info['email'], $info['password'], $info['dob'], date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"));
-       return $this->db->query($query,$values);
-     }
+    function store_user_register($info){
+        $query = "INSERT INTO users (name, user_name, email, password, dob, created_at, updated_at) VALUES(?,?,?,?,?,?,?)";
+        $values = array($info["name"], $info['user_name'], $info['email'], md5($info['password']), $info['dob'], date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"));
+        $this->db->query($query,$values);
+        return $this->db->insert_id();
+    }
 
       function get_user($name){
         $query = "SELECT * FROM users WHERE email= ?";
@@ -21,17 +21,26 @@ class User extends CI_Model {
         return $this->db->query($query,$values)->row_array();
       }
 
-			function insertCityByName($name,$id){
-				$query = "INSERT INTO trips (city_name,user_id) VALUES (?,?)";
-				$values = array($name,$id);
-				return $this->db->query($query,$values);
-			}
+      function create_trip($city_name,$user_id,$info){
+        $query = "INSERT INTO trips (user_id,city_name,description,start_date,created_at) VALUES (?,?,?,?,?)";
+        $values = array($user_id,$city_name,$info['description'],$info['start_date'],date("Y-m-d, H:i:s"));
+        return $this->db->query($query,$values);
+      }
 
-			function getTripByUser($city,$id){
-				$query ="SELECT * FROM trips JOIN users on users.user_id = trips.user_id where city_name = ? AND users.user_id != ?";
-				$values=array($city,$id);
-				return $this->db->query($query,$values)->result_array();
-			}
+      function get_trip($id){
+        $query ="SELECT * FROM trips WHERE user_id=?";
+        $values = array($id);
+        return $this->db->query($query,$values)->result_array();
+
+      }
+
+      function getTripByid($trip_id){
+        $query = "SELECT * FROM trips JOIN users ON trips.user_id=users.user_id WHERE trips.trip_id=? AND users.user_id != ? ";
+        $values = array($trip_id,$user_id);
+        return $this->db->query($query,$values)->result_array();
+      }
+
+
 
    }
 

@@ -40,7 +40,7 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #16617d;
+  color: black;
 }
 
 .navbar {
@@ -118,7 +118,9 @@ nav{
 .modal-body{
 		padding-left:89px !important;
 }
-
+input#eventbtn{
+  color:white !important;
+}
 input#regbtn
  {
     margin-left: 27%;
@@ -207,6 +209,7 @@ table th{
 	background: url(/assets/images/fog.png) no-repeat center top;
 	/*background-size: 200px;*/
 }
+<<<<<<< HEAD
 /*Weather Forecast*/
 .deets {
     width: 100%;
@@ -227,4 +230,10 @@ table th{
 }
 .split h5 {
     margin-top: -1.5em;
+=======
+
+.form-event{
+  border: 1px solid white;
+  padding: 26px 35px;
+>>>>>>> 18e8d04be219a82d4410bea672549df9aec2923e
 }
