@@ -92,6 +92,7 @@
 	      </div><!-- /.modal-content -->
 	    </div><!-- /.modal-dialog -->
 	  </div><!-- /.modal -->
+	  
 		<!--  Register modal-->
 		<div id="myModalRegister" class="modal fade" tabindex="-1" role="dialog">
 			<div class="modal-dialog">

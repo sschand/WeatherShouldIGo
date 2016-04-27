@@ -18,30 +18,17 @@ class Login extends CI_Controller {
     $this->load->view('index');
 	}
 
+	// Register user, validation is done with Boostrap on client side
 	public function store_user_register(){
+		$info = $this->input->post();
+		$user_id = $this->User->store_user_register($info);
 
-
-		// 	$this->load->library("form_validation");
-		// 	$this->form_validation->set_rules("name", "Name", "trim|required");
-		// 	$this->form_validation->set_rules("username", "username", "trim|required");
-		// 	$this->form_validation->set_rules("email", "Email", "required|valid_email|is_unique[users.email]");
-		// 	$this->form_validation->set_rules("password", "Password", "required|min_length[8]|matches[confirm_password]");
-		// 	$this->form_validation->set_rules("confirm_password", "Password Confirmation", "required");
-		// 	$this->form_validation->set_rules("dob", "Date of birth", "trim|required");
-		//
-		// if ($this->form_validation->run() == FALSE)
-		// {
-		// 	$this->load->view('index');
+		$this->session->set_userdata('user_id', $user_id);
+		// redirect(base_url().'/login/get_user');
 		// }
-		// else
-		// {
-			$info = $this->input->post();
-      var_dump($info);
-	    $this->User->store_user_register($info);
-	    $this->session->set_userdata('email', $this->input->post('email'));
-			redirect(base_url().'/login/get_user');
-		// }
-
+		echo $user_id;
+		echo "USER REGISTERED";
+		die();
 	}
 
 	public function get_user(){
