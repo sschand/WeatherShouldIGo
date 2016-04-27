@@ -113,6 +113,7 @@ function initMap() {
                             var type = this.type;
                             $('.details').html('<h4>'+name+'</h4>');
                             $('.deets').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
+                            $('.deets').css('borderTop', '1px solid rgba(136, 136, 136, 0.76)');
                             $('.deets').css('background', 'rgba(180, 180, 180, 0.1)');
 
                             $('.deets').html('');

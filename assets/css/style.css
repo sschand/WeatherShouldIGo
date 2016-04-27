@@ -209,7 +209,10 @@ table th{
 	background: url(/assets/images/fog.png) no-repeat center top;
 	/*background-size: 200px;*/
 }
-<<<<<<< HEAD
+.form-event{
+  border: 1px solid white;
+  padding: 26px 35px;
+}
 /*Weather Forecast*/
 .deets {
     width: 100%;
@@ -230,10 +233,13 @@ table th{
 }
 .split h5 {
     margin-top: -1.5em;
-=======
-
-.form-event{
-  border: 1px solid white;
-  padding: 26px 35px;
->>>>>>> 18e8d04be219a82d4410bea672549df9aec2923e
+}
+.trip {
+    margin-top: 1em;
+    margin-bottom: 0.75em;
+}
+.trip .plan a {
+    border: 1px solid rgba(180,180,180,0.7);
+    padding: 3px 1em;
+    border-radius: 4px;
 }
