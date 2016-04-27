@@ -10,7 +10,7 @@ class Trip extends CI_Controller {
     public function index()
     {
       $info = $this->User->getTripByUser($this->session->userdata('city_name'),$this->session->userdata('user_id'));
-      //var_dump($tripInfo);
+      //var_dump($info);
       $data = array('info' => $info);
       $this->load->view('trip', $data);
     }

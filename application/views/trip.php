@@ -31,11 +31,14 @@
 
 	          <a class="navbar-brand" href="#">Windstagra'm</a>
 	        </div>
-	        <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav navbar-right">
-              <li><a href="/Main">Home</a></li>
-	            <li><a href="#">My Trips</a></li>
-	            <li><a href="/login/logoff">Log out</a></li>
+          <div id="navbar" class="collapse navbar-collapse navbar-right ">
+  	        <ul class="nav navbar-nav">
+  	          <li class=" hidden">
+  	            <a href="#page-top"></a>
+  	          </li>
+              <li class="page-scroll"><a href="/Main">Home</a></li>
+	            <li class="page-scroll"><a href="#">My Trips</a></li>
+	            <li class="page-scroll"><a href="/login/logoff">Log out</a></li>
 
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -43,15 +46,15 @@
 	    </nav>
 
       <div class="container">
-        <h3 class="list"></h3>
+        <h5 class="list">List of people going to #<?= $this->session->userdata('city_name')?></h5>
         <div class="row">
           <div class="col-md-6">
             <table class="table">
               <tr>
                 <th>User Name</th>
-                <th>City</th>
+                <th>Date</th>
               </tr>
-              <?=var_dump($info['user_id'])?>
+
 
 
 

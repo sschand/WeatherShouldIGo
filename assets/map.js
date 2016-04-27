@@ -154,14 +154,14 @@ function getInstagram(name, weather) {
         var images_string = "";
         var weatherType = weather;
         console.log('weather is '+weather);
-        $('h3.list').html("List of people going to "+name);
-
+        //$('h3.list').html("List of people going to "+name);
+        $('.trip').html('<span class="plan"><a href="/Login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
         $('.span').click(function(){
 
         })
         if(res.data.length > 0){
           console.log(res.data);
-          $('.trip').html('<span class="plan"><a href="/Login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
+
           // console.log(res.data[i].tags.length);
           for (var i = 0; i < res.data.length; i++) {
 
