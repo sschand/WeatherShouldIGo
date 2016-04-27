@@ -19,7 +19,7 @@ class Main extends CI_Controller {
     public function mytrip(){
       // $userTrip = $this->Trip->getmytrip($this->session->userdata('id'));
       // $data = array('userdata'=>$userTrip);
-      $this->load->view('trip',$data);
+      $this->load->view('trip');
     }
 }
 

@@ -40,7 +40,7 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #16617d;
+  color: black;
 }
 
 .navbar {
@@ -117,7 +117,9 @@ nav{
 .modal-body{
 		padding-left:89px !important;
 }
-
+input#eventbtn{
+  color:white !important;
+}
 input#regbtn
  {
     margin-left: 27%;
@@ -205,4 +207,9 @@ table th{
 .w5{
 	background: url(/assets/images/fog.png) no-repeat center top;
 	/*background-size: 200px;*/
+}
+
+.form-event{
+  border: 1px solid white;
+  padding: 26px 35px;
 }
