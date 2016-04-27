@@ -20,7 +20,22 @@ $(document).ready(function() {
     $('#userradius').focus();
     // $('nav').css('backgroundColor', 'rgba(180, 180, 180, 0.76)');
     $('nav.navbar.navbar-custom.navbar-fixed-top').css('backgroundColor', 'rgba(180,180,180,0.0)');
-})
+
+    // Validate password and confirm password    
+    var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+          confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+          confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+
+    })
 //Function for map initialization and getting weather by distance
 function initMap() {
         //Where map center is
