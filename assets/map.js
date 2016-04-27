@@ -27,7 +27,11 @@ function initMap() {
         //CENTER OF US: lat: 39.8282, lng: -98.5795
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,//8 for local view, 4 for national view
-          center: myLatLng
+          center: myLatLng,
+          draggable: false,
+          zoomControl: false,
+          scrollwheel: false,
+          disableDoubleClickZoom: true
         });
         var icons = {
           Snow: '/assets/images/snow.png',
@@ -173,6 +177,5 @@ function getInstagram(name, weather) {
 
       $('#loading').html("");
       $('#images').html(images_string);
-        $('input').val('');
     }, 'json');
 }
