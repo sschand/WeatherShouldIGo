@@ -37,7 +37,6 @@
   	            <a href="#page-top"></a>
   	          </li>
               <li class="page-scroll"><a href="/Main">Home</a></li>
-	            <li class="page-scroll"><a href="#">My Trips</a></li>
 	            <li class="page-scroll"><a href="/login/logoff">Log out</a></li>
 
 	          </ul>
