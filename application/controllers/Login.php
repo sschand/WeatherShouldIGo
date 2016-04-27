@@ -19,29 +19,29 @@ class Login extends CI_Controller {
 	}
 
 	public function store_user_register(){
-		if($this->input->post('action') && $this->input->post('action') == "register"){
 
-			$this->load->library("form_validation");
-			$this->form_validation->set_rules("name", "Name", "trim|required");
-			$this->form_validation->set_rules("username", "username", "trim|required");
-			$this->form_validation->set_rules("email", "Email", "required|valid_email|is_unique[users.email]");
-			$this->form_validation->set_rules("password", "Password", "required|min_length[8]|matches[confirm_password]");
-			$this->form_validation->set_rules("confirm_password", "Password Confirmation", "required");
-			$this->form_validation->set_rules("dob", "Date of birth", "trim|required");
 
-		if ($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('index');
-		}
-		else
-		{
+		// 	$this->load->library("form_validation");
+		// 	$this->form_validation->set_rules("name", "Name", "trim|required");
+		// 	$this->form_validation->set_rules("username", "username", "trim|required");
+		// 	$this->form_validation->set_rules("email", "Email", "required|valid_email|is_unique[users.email]");
+		// 	$this->form_validation->set_rules("password", "Password", "required|min_length[8]|matches[confirm_password]");
+		// 	$this->form_validation->set_rules("confirm_password", "Password Confirmation", "required");
+		// 	$this->form_validation->set_rules("dob", "Date of birth", "trim|required");
+		//
+		// if ($this->form_validation->run() == FALSE)
+		// {
+		// 	$this->load->view('index');
+		// }
+		// else
+		// {
 			$info = $this->input->post();
-
+      var_dump($info);
 	    $this->User->store_user_register($info);
 	    $this->session->set_userdata('email', $this->input->post('email'));
 			redirect(base_url().'/login/get_user');
-		}
-	  }
+		// }
+
 	}
 
 	public function get_user(){
@@ -57,7 +57,7 @@ class Login extends CI_Controller {
 	}
 
 	public function store_user_login(){
-		if($this->input->post('action') && $this->input->post('action') == "login"){
+
 			$this->form_validation->set_rules("email_login", "Email", "required|valid_email");
 			$this->form_validation->set_rules("password_login", "Password", "required");
 
@@ -74,7 +74,8 @@ class Login extends CI_Controller {
 			 if($user && md5($user['password']) == $password){
 
         $this->session->set_userdata('user_id',$user['user_id']);
-				//$this->session->set_userdata('alias',$user['alias']);
+				$this->session->set_userdata('user_name',$user['user_name']);
+
 
 				redirect(base_url().'/Main/mytrip');
 
@@ -85,7 +86,17 @@ class Login extends CI_Controller {
 			 }
 
 	}
+
 }
+public function logged($name){
+	$this->session->set_userdata('city_name',$name);
+	if($this->session->userdata('user_id')){
+		$this->User->insertCityByName($name,$this->session->userdata('user_id'));
+		$this->load->view('trip');
+	} else {
+		$this->session->set_flashdata('loggedFail','<script type="text/javascript">alert("Must be logged in to plan a trip!");</script>');
+		redirect(base_url().'');
+	}
 }
 
 
