@@ -77,7 +77,7 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('user_name',$user['user_name']);
 
 
-				redirect(base_url().'/Main/mytrip');
+				redirect(base_url().'/Main');
 
 			 }
 			 else {

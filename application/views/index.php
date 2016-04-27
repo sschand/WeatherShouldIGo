@@ -49,6 +49,12 @@
 	          <li class="page-scroll">
 	            <a href="#" data-toggle="modal" data-target="#myModalLogin">Login</a>
 	          </li>
+						<li class="page-scroll">
+							 <?php if($this->session->userdata('user_name')){
+								echo "<a href='/Main/mytrip'>My Trips</a>";
+							} ?>
+	          </li>
+
 	          <li class="page-scroll">
 	            <a href="#" data-toggle="modal" data-target="#myModalRegister" >Register</a>
 	          </li>
