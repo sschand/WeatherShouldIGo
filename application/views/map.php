@@ -227,7 +227,7 @@ $this->session->set_userdata('userlon',0);
             <div class="deets"></div>
         </div>
         <!-- Button to show list of cities -->
-        <button type="button" class="button">Show Cities</button>
+        <button type="button" id="showButton">Show Cities</button>
 
         <!-- Cities that we have listed -->
         <div class='cities row'></div>
