@@ -157,10 +157,7 @@
 		<!-- Current Weather condition -->
 		<div class="deets"></div>
 	</div>
-	<!-- Button to show list of cities -->
-	<div class="row">
-		<button type="button" class="button">Show Cities</button>
-	</div>
+
 
 	<!-- Cities that we have listed -->
 	<div class='cities row'></div>

@@ -164,7 +164,7 @@ function getInstagram(name, weather) {
               // if(res.data[i].tags.includes(weatherType)){
               //   console.log('yes!!');
                 images_string +='<img src='+res.data[i].images.low_resolution.url+'>';
-
+              // }
             }
             if(images_string.length < 1){
               images_string += "NONE";
