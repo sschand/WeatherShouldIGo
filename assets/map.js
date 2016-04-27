@@ -176,7 +176,7 @@ function getInstagram(name, weather) {
         var images_string = "";
         var weatherType = weather;
         console.log('weather is '+weather);
-
+        $('.trip').html('<span><a href="/Login">Plan a Trip?</a></span>')
         if(res.data.length > 0){
           console.log(res.data);
           // console.log(res.data[i].tags.length);
@@ -200,7 +200,7 @@ function getInstagram(name, weather) {
 
       $('#loading').html("");
       $('#images').html(images_string);
-        $('input').val('');
+      $('input').val('');
     }, 'json');
 
 }

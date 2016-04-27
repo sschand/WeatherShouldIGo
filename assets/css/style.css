@@ -1,16 +1,139 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 35px;
+  text-transform: uppercase;
+  font-family: "Monstserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+body{
+display: table;
+width: 100%;
+height: auto;
+padding: 100px 0;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+color: #f4f4f4;
+background: url(/assets/images/sunset.jpg) no-repeat bottom center scroll;
+background-color: #333333;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
+p {
+  margin: 0 0 25px;
+  font-size: 18px;
+  line-height: 1.6em;
+}
+
+a {
+  color: #26a5d3;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #16617d;
+}
+
+.navbar {
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  font-family: "Monstserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 2.5em;
+	color:white !important;
+}
+
+.navbar-brand:focus {
+  outline: none;
+}
+
+.navbar-inverse a {
+  color: white !important;
+}
+
+.navbar-inverse .nav li a {
+  -webkit-transition: background 0s ease-in-out !important;
+  -moz-transition: background 0.3s ease-in-out !important;
+  transition: background 0.3s ease-in-out ;
+}
+
+.navbar-custom .nav li a:hover {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-toggle {
+  padding: 4px 6px;
+  font-size: 16px;
+  color: #f4f4f4;
+}
+
+
+.navbar {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-family: "Monstserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar a{
+	color:white !important;
+}
+
+nav{
+	background: transparent !important;
+	color:white !important;
+	border:none !important;
+}
+
+.modal-header{
+	color:white;
+	text-align: center;
+}
+/*modal style*/
+.modal-content{
+ margin-top:100px;
+	background-color: rgba(0,0,0,0.7)!important;
+	border:2px solid rgba(87,84,57);
+	height: 500px !important;
+	color:black !important;
+}
+.close{
+	    opacity:1 !important;
+			color: white !important;
+}
+.modal-body{
+		padding-left:89px !important;
+}
+
+input#regbtn
+ {
+    margin-left: 27%;
+}
+input#loginbtn{
+	margin-left:32%;
+}
+
+.modal-content.login{
+	height: 300px !important;
+}
+
 label{
 	display: inline;
 }
 
 
-body{
-	padding-top:90px;
-}
-nav{
-	background: transparent !important;
-	border-bottom: 2px solid black;
-
-}
 
 #map{
 	height: 500px;
@@ -38,6 +161,8 @@ nav{
 	padding: 30px 12px !important;
 	width:115px !important;
 	text-align: center;
+	color:white !important;
+	border-color: white !important;
 }
 
 .w1{
