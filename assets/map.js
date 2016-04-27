@@ -200,8 +200,9 @@ function initMap() {
                     for (var i = 0; i < markers.length; i++) {
                         markers[i].setMap(map);
                     }
-                    // Reset City Details, forecast, and  images
+                    // Reset City Details, forecast, trip button, and images
                     $("#images").html('');
+                    $(".trip").html('');
                     $(".details").html('<!-- Name of the City --><h4 class="name"></h4>');
                     $(".spec_det").html('<div class="deets twelve columns" style="width: 100%"></div>');
 
