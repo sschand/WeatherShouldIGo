@@ -5,14 +5,14 @@ $active_record = TRUE;
 
 if(ENVIRONMENT == 'production')
 {
-	$db['default']['hostname'] = 'localhost';
+	$db['default']['hostname'] = '52.38.235.247';
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = 'root';
 	$db['default']['database'] = 'windstagram';
 }
 else
 {
-	$db['default']['hostname'] = 'localhost';
+	$db['default']['hostname'] = '52.38.235.247';
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = 'root';
 
