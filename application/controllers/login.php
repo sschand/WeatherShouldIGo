@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+ class Login extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 		//$this->output->enable_profiler();
 		date_default_timezone_set('America/Los_Angeles');
-		$this->load->model('User');
+		$this->load->model('user');
 
 		$this->load->library("form_validation");
 		$this->load->helper('form');
@@ -26,7 +26,7 @@ class Login extends CI_Controller {
 		redirect(base_url().'login/get_user');
 	}
 
-	//Grab user info and redirect to log in  
+	//Grab user info and redirect to log in
 	public function get_user(){
     	$user = $this->User->get_user($this->session->userdata['user_id']);
 		$this->session->set_flashdata('success_register',"You were successfully registered, login to continue <i class='fa fa-flag-checkered' aria-hidden='true'></i>");
@@ -46,7 +46,7 @@ class Login extends CI_Controller {
 
 		$this->session->set_userdata('user_id',$user['user_id']);
 		$this->session->set_userdata('user_name',$user['user_name']);
-		redirect(base_url().'/Main');
+		redirect(base_url().'/main');
 	}
 
 	public function validate_user($email, $password){
@@ -57,7 +57,7 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('user_id', $user['user_id']);
 			$this->session->set_userdata('user_name', $user['user_name']);
 			$this->session->set_userdata('user_email', $email);
-			$response = "User and email correct";		
+			$response = "User and email correct";
 		}else {
 			$response =  "Incorrect login";
 		}
