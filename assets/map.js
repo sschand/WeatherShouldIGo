@@ -27,9 +27,13 @@ $(document).ready(function() {
         }
     }
 
-    //Error in New Event page (cannot set property 'onchange' of null on password.onchange)
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
+    $("#password").on("change", function(){
+        validatePassword();
+    });
+
+    $("#confirm_password").on("keyup", function(){
+        validatePassword();
+    });
 
     //LOGIN
     $("#login_form").on('submit', function(e){
