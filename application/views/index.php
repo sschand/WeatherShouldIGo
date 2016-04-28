@@ -132,6 +132,9 @@
 							<div >
 								<input id="dob" class="col-sm-10" name="dob" type="text" onfocus="(this.type='date')" id="datepicker" placeholder="Date of Birth (must be at least 21 years)" required max="1995-04-29">  <!-- Date - for 21+ hard-coded for now  -->
 							</div>
+							<div >
+								<input id="phone" class="col-sm-10" name="phone" type="number" placeholder="ex : 15559995555" maxlength="10" required>  
+							</div>
 							<div class="">
 								<input type="submit" class="btn btn-default" value="Register" id="regbtn" required>
 							</div>

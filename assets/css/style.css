@@ -251,3 +251,9 @@ table th{
     padding: 3px 1em;
     border-radius: 4px;
 }
+
+
+input.phone {
+    width: 50px;
+    margin: 0 5px;
+}

@@ -44,11 +44,9 @@ class Login extends CI_Controller {
 
 		$user = $this->User->store_user_login($email);
 
-			$this->session->set_userdata('user_id',$user['user_id']);
-			$this->session->set_userdata('user_name',$user['user_name']);
-			redirect(base_url().'/Main');
-
-
+		$this->session->set_userdata('user_id',$user['user_id']);
+		$this->session->set_userdata('user_name',$user['user_name']);
+		redirect(base_url().'/Main');
 	}
 
 	public function validate_user($email, $password){
@@ -79,7 +77,9 @@ public function logged($name){
 	}
 }
 
-
+	// public function plan_trip($city){
+	// 	$this->load->view('newevent');
+	// }
 }
 
 //end of main controller
