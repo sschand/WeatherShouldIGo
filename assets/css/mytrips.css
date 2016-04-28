@@ -32,3 +32,15 @@ input{
 table td{
   text-align: center;
 }
+
+.show-text{
+  color:black !important;
+}
+
+body{
+  padding:200px 0 !important;
+}
+
+select{
+  color:black !important;
+}
