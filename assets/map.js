@@ -14,7 +14,17 @@
 // }
 
 $(document).ready(function() {
-
+    $('body').append('<img class="morningSun" src="/assets/images/origWeather/sun.png" style="height: 200px; position: absolute; left: -300px; top: 30%; z-index: 5000">');
+    $('body').append('<div class="coverForLoad" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vw; z-index: 3000; background: rgba(180,180,180,0.3)"></div>')
+            .queue(function() {
+                $('.morningSun').animate({left:'100%'}, 3000, function() {
+                    $('.morningSun').hide();
+                })
+                .delay(0)
+                .queue(function(){
+                    $('.coverForLoad').hide();
+                });
+            })
     // $('nav').css('backgroundColor', 'rgba(180, 180, 180, 0.76)');
     $('nav.navbar.navbar-custom.navbar-fixed-top').css('backgroundColor', 'rgba(180,180,180,0.0)');
 
@@ -32,23 +42,7 @@ $(document).ready(function() {
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
 
-    //LOGIN
-    $("#login_form").on('submit', function(e){
-          e.preventDefault();
-
-          var user = $('#email_login').val();
-          var password = $('#password_login').val();
-
-          $.get('/login/validate_user/'+user+'/'+password, function(res) {
-              if(res!= 'User and email correct'){
-                  $("#myModalLogin .modal-body .error").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>'+res+'</strong></div>');
-              }else{
-                  $("#myModalLogin .modal-body .error").html('');
-                  location.reload();
-              }
-          });
-    });
-})
+    })
 
 //Function for map initialization and getting weather by distance
 function initMap() {
@@ -98,7 +92,6 @@ function initMap() {
             for(var i = 0; i < res.list.length; i++){
                 // var cityPos = {lat: res.list[i].coord.lat , lng: res.list[i].coord.lon}
                 // var typeofthing = res.list[i].weather[0].main;
-
 
                 var cityUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+res.list[i].name+
                               "&units=imperial&cnt=7&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
@@ -220,7 +213,7 @@ function initMap() {
             })
 
         //End of Get
-        }, 'json');
+    }, 'json');
 
 
     //Show some things on submitting
