@@ -128,6 +128,24 @@ function initMap() {
                             forecast: countryCheck.list
                         });
 
+                        $('#map').append('<div class="cityName"></div>');
+
+                        marker.addListener('mouseover', function() {
+                            var currMarker = this;
+                            var mouse = {mouseX:0, mouseY:0};
+                            $('.cityName').show();
+                            $(document).on('mousemove', function( event ) {
+                                mouse.mouseX = event.offsetX;
+                                mouse.mouseY = event.offsetY;
+                                $('.cityName').text(currMarker.title);
+                                $('.cityName').css('top', mouse.mouseY+20);
+                                $('.cityName').css('left', mouse.mouseX+20);
+                            })
+                        })
+                        marker.addListener('mouseout', function() {
+                            $('.cityName').hide();
+                        })
+
                         //Adds an event listener to each of the markers so clicking works
                         marker.addListener('click', function() {
                             var dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
