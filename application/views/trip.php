@@ -20,6 +20,7 @@
 </head>
 <body>
 
+    <!-- Navbar Starts Here -->
 	<nav class="navbar navbar-fixed-top">
 	      <div class="container">
 	        <div class="navbar-header">
@@ -42,67 +43,86 @@
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
-	    </nav>
+	</nav>
+    <!-- Navbar Ends Here -->
 
-      <div class="container">
+    <!-- Container starts here -->
+    <div class="container">
+        <!-- Add Friend to Friend List -->
         <form action="/Trip/add_friend_to_list" method="post">
           <input name="user_name" class="show-text" type =Text><input type=Submit value="Add Friend">
         </form>
 
-
+        <!-- My Trips -->
         <div class="row">
           <div class="col-md-5">
-            <h4>My #Trips</h4>
-            <ul class="list-group">
-              <?php foreach ($triplist as $trip): ?>
-                <li class="list-group-item">
-                  <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
-                </li>
+            <div class="myTrips">
+            <!-- My Trips -->
+                <h4>My #Trips</h4>
+                <ul class="list-group">
+                  <?php foreach ($triplist as $trip): ?>
+                    <li class="list-group-item">
+                      <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
+                    </li>
 
-              <?php endforeach; ?>
-            </ul>
+                  <?php endforeach; ?>
+                </ul>
             </div>
-            <?php if($this->session->userdata('display_trip_id')){?>
 
+            <div class="friendsTrips">
+                <!-- Trips that friends are going to -->
+                <h6>Trips that your friends are going</h6>
+                <ul class="list-group">
+                  <?php foreach ($friendTripList as $trip): ?>
+                    <li class="list-group-item">
+                      <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+            </div>
+
+        </div> <!-- End of col-md-5 Left Side -->
+
+            <!-- If display_trip_id is a thing... -->
+        <?php if($this->session->userdata('display_trip_id')):?>
+
+            <!-- Trip Details -->
             <div class="col-md-5 col-md-offset-1">
               <h5>Trip Details</h5>
-              <p>
-                Destination: #<?= strtoupper($tripinfo[0]['city_name'])?>
-              </p>
-              <p>
-                Date: <?= $tripinfo[0]['start_date']?>
-              </p>
-              <p>
-                Description: <?= $tripinfo[0]['description']?>
-              </p>
+              <p>Destination: #<?= strtoupper($tripinfo[0]['city_name'])?></p>
+              <p>Date: <?= $tripinfo[0]['start_date']?></p>
+              <p>Description: <?= $tripinfo[0]['description']?></p>
+              <!-- If Nobody is going to Trip... -->
               <?php if(count($tripinfo) == 0){
-
                 echo "<p>You are going alone invite friends</p><a class='btn btn-default' href='/Trip/add_friend'>Invite Friends</a>";
               } else {?>
+              <!-- /////Nobody Going on Trip///// -->
+
+              <!-- Otherwise, we show the list of people going on the trip -->
               <table class="table">
                 <tr>
                   <th>Goers</th>
                   <th>Action</th>
                 </tr>
-
+                <!-- Shows users on the trip and gives access to Remove users from the Trip -->
                 <?php foreach ($tripinfo as $value): ?>
                   <tr>
-
                     <td><?=$value['user_name'];?></td>
-                    <td><a href="/Trip/remove_friend/<?=$value['user_id'];?>">Remove</a></td>
 
+                    <?php if (in_array($this->session->userdata('user_name'), $value)){ ?>
+                        <td><a href="/Trip/remove_friend/<?=$value['user_id'];?>">Remove</a></td>
+                    <?php } else { ?>
+                        <td>&nbsp;</td>
+                    <?php } ?>
                   </tr>
-
                 <?php endforeach; ?>
 
-
               </table>
-              <?php
+              <?php } ?>
+            <!-- /////Else///// -->
 
-            } ?>
-
-            <?php if($this->session->userdata('friends')){?>
-
+            <?php if($this->session->userdata('friends')):?>
+              <!-- Invite Friends to the trip -->
               <ul class="addFriend">
                 <form action="/Trip/add_friendToTrip" method="post">
                   <select name="friend_select">
@@ -112,42 +132,26 @@
                   </select>
                   <input type=Submit value='Invite Friends'>
                 </form>
-
-
              </ul>
+               <!-- ////////Invite Friends to the trip//////// -->
+           <?php endif; ?>
 
+            </div> <!-- End of Trip Details -->
 
-           <?php } ?>
-            </div>
-
-            <?php } ?>
-
-
+        <?php endif; ?>
+        <!-- ////////If display_trip_id is a thing...//////// -->
 
         </div>
+        <!-- ^ is the end of the row -->
+
         <div class="row">
           <div class="col-md-5">
-            <h6>Trips that your friends are going</h6>
-            <ul class="list-group">
-
-              <?php foreach ($friendTripList as $trip): ?>
-                <li class="list-group-item">
-                  <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
-                </li>
-
-              <?php endforeach; ?>
-            </ul>
-          </div>
-
-        </div>
-
-
-        </div>
-
-
-
-
-
+            <!-- Moved to the first row, under the left col-md-5 -->
+            <?php var_dump($this->session->userdata('user_name')); ?>
+          </div>  <!-- End col-md-5 -->
+      </div> <!-- End of the Second row -->
+    </div>
+    <!-- End of Container -->
 
         <script type="text/javascript">
             $('li.list-group-item').click(function() {
