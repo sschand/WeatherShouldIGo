@@ -9,19 +9,19 @@ class Trip extends CI_Controller {
     }
     public function index()
     {
-      $trip = $this->User->get_trip($this->session->userdata('user_id'));
-      $friendTrip = $this->User->friend_trip($this->session->userdata('user_id'));
+      $trip = $this->user->get_trip($this->session->userdata('user_id'));
+      $friendTrip = $this->user->friend_trip($this->session->userdata('user_id'));
       for($i=0;$i < count($friendTrip); $i++)
       {
-        $peopleCount = $this->User->get_people($friendTrip[$i]['trip_id']);
+        $peopleCount = $this->user->get_people($friendTrip[$i]['trip_id']);
         $cityID = $friendTrip[$i]['trip_id'];
         $this->session->set_userdata($cityID, $peopleCount);
       }
 
-      $friends = $this->User->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
+      $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
       $this->session->set_userdata('friends', $friends);
 
-      $trip = $this->User->get_trip($this->session->userdata('user_id'));
+      $trip = $this->user->get_trip($this->session->userdata('user_id'));
       $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip);
 
       //var_dump($data);
@@ -36,10 +36,10 @@ class Trip extends CI_Controller {
 
     public function getTripByid($trip_id){
       $this->session->set_userdata('display_trip_id', $trip_id);
-      $trip = $this->User->get_trip($this->session->userdata('user_id'));
-      $info = $this->User->getTripByid($trip_id);
-      $friendTrip = $this->User->friend_trip($this->session->userdata('user_id'));
-      $friends = $this->User->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
+      $trip = $this->user->get_trip($this->session->userdata('user_id'));
+      $info = $this->user->getTripByid($trip_id);
+      $friendTrip = $this->user->friend_trip($this->session->userdata('user_id'));
+      $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
       $this->session->set_userdata('friends', $friends);
 
       //var_dump($info);
@@ -52,11 +52,11 @@ class Trip extends CI_Controller {
     public function add_friendToTrip(){
       $info = $this->input->post('friend_select');
       //var_dump($info);
-     $this->User->add_friendToTrip($info,$this->session->userdata('display_trip_id'));
+     $this->user->add_friendToTrip($info,$this->session->userdata('display_trip_id'));
 
      //Twilio Sending Message grabs
-     $friendNumber = $this->User->getPhoneByUserId($info);
-     $trip = $this->User->getTripNameByTripId($this->session->userdata('display_trip_id'));
+     $friendNumber = $this->user->getPhoneByUserId($info);
+     $trip = $this->user->getTripNameByTripId($this->session->userdata('display_trip_id'));
      $this->sendMessageForTrip($friendNumber, $trip);
 
      $this->session->unset_userdata('friends');
@@ -85,15 +85,15 @@ class Trip extends CI_Controller {
 
     public function add_friend_to_list(){
       //var_dump($this->input->post('user_name'));
-      $info = $this->User->get_user_id($this->input->post('user_name'));
+      $info = $this->user->get_user_id($this->input->post('user_name'));
 
-      $this->User->add_friend_to_list($this->session->userdata('user_id'),$info['user_id']);
+      $this->user->add_friend_to_list($this->session->userdata('user_id'),$info['user_id']);
       $this->session->unset_userdata('display_trip_id');
       redirect(base_url().'trip');
     }
 
     public function remove_friend($friend_id){
-      $this->User->remove_friend($friend_id);
+      $this->user->remove_friend($friend_id);
       redirect(base_url().'trip/getTripByid/'.$this->session->userdata('display_trip_id'));
     }
 

@@ -21,14 +21,14 @@
 	// Register user, validation is done with Boostrap on client side
 	public function store_user_register(){
 		$info = $this->input->post();
-		$user_id = $this->User->store_user_register($info);
+		$user_id = $this->user->store_user_register($info);
 		$this->session->set_userdata('user_id', $user_id);
 		redirect(base_url().'login/get_user');
 	}
 
 	//Grab user info and redirect to log in
 	public function get_user(){
-    	$user = $this->User->get_user($this->session->userdata['user_id']);
+    	$user = $this->user->get_user($this->session->userdata['user_id']);
 		$this->session->set_flashdata('success_register',"You were successfully registered, login to continue <i class='fa fa-flag-checkered' aria-hidden='true'></i>");
     	$data = array('user'=> $user);
 		redirect(base_url().'');
@@ -42,7 +42,7 @@
 	public function store_user_login(){
 		$email = $this->session->userdata('user_email');
 
-		$user = $this->User->store_user_login($email);
+		$user = $this->user->store_user_login($email);
 
 		$this->session->set_userdata('user_id',$user['user_id']);
 		$this->session->set_userdata('user_name',$user['user_name']);
@@ -50,7 +50,7 @@
 	}
 
 	public function validate_user($email, $password){
-		$user = $this->User->store_user_login($email);
+		$user = $this->user->store_user_login($email);
 		$response = '';
 
 		if($user && $user['password'] == md5($password)){
