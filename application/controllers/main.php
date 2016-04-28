@@ -5,6 +5,7 @@ class Main extends CI_Controller {
         parent::__construct();
         // When encountering No Access Control Origin issues
         $this->load->library('PHPRequests');
+        $this->session->set_userdata('mapLoaded', false);
     }
     public function index()
     {

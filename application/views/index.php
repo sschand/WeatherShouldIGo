@@ -27,6 +27,8 @@
 	<link rel="stylesheet" type="text/css" href="/assets/css/skeleton.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<script src="/assets/jquery.min.js" type="text/javascript"></script>
+	<!-- <script src="/assets/sun.js"></script> -->
+
 	<script src="/assets/map.js"></script>
 </head>
 <body>
