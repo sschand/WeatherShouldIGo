@@ -270,3 +270,12 @@ input.inviteFriends {
     padding-left: 1em;
     padding-right: 1em;
 }
+
+.cityName {
+    position: fixed;
+    z-index: 0;
+    border: 1px solid rgba(180,180,180,0.76);
+    border-radius: 4px;
+    padding: 0 0.3em;
+    background: rgba(50,50,50,1);
+}
