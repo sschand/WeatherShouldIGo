@@ -261,3 +261,12 @@ input.phone {
 input.pickDateNewEvent {
     color: black !important; /*rgba(97, 97, 97, 0.65)*/
 }
+
+.friend_select {
+    width: 10em;
+}
+
+input.inviteFriends {
+    padding-left: 1em;
+    padding-right: 1em;
+}

@@ -105,12 +105,22 @@
                   <th>Action</th>
                 </tr>
                 <!-- Shows users on the trip and gives access to Remove users from the Trip -->
+
+                <!-- Check to see if current user is in the list of goers -->
+                <?php $isInList = false; ?>
+                <?php foreach ($tripinfo as $value): ?>
+                    <?php if (in_array($this->session->userdata('user_name'), $value)){ ?>
+                        <?php $isInList = true; ?>
+                    <?php } ?>
+                <?php endforeach; ?>
+                <!-- ////////END -->
+
+
                 <?php foreach ($tripinfo as $value): ?>
                   <tr>
                     <td><?=$value['user_name'];?></td>
-
-                    <?php if (in_array($this->session->userdata('user_name'), $value)){ ?>
-                        <td><a href="/Trip/remove_friend/<?=$value['user_id'];?>">Remove</a></td>
+                    <?php if ($isInList) { ?>
+                    <td><a href="/Trip/remove_friend/<?=$value['user_id'];?>">Remove</a></td>
                     <?php } else { ?>
                         <td>&nbsp;</td>
                     <?php } ?>
@@ -121,16 +131,16 @@
               <?php } ?>
             <!-- /////Else///// -->
 
-            <?php if($this->session->userdata('friends')):?>
+            <?php if($this->session->userdata('friends') && $isInList):?>
               <!-- Invite Friends to the trip -->
               <ul class="addFriend">
                 <form action="/Trip/add_friendToTrip" method="post">
-                  <select name="friend_select">
+                  <select name="friend_select" class="friend_select">
                     <?php foreach ($this->session->userdata('friends') as $friend): ?>
                          <option value="<?=$friend['user_id']?>"><?=$friend['user_name']?></option>
                     <?php endforeach; ?>
                   </select>
-                  <input type=Submit value='Invite Friends'>
+                  <input type=Submit value='Invite Friends' class="inviteFriends">
                 </form>
              </ul>
                <!-- ////////Invite Friends to the trip//////// -->
@@ -147,7 +157,7 @@
         <div class="row">
           <div class="col-md-5">
             <!-- Moved to the first row, under the left col-md-5 -->
-            <?php var_dump($this->session->userdata('user_name')); ?>
+            <?php //var_dump($this->session->userdata('user_name')); ?>
           </div>  <!-- End col-md-5 -->
       </div> <!-- End of the Second row -->
     </div>
