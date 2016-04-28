@@ -62,7 +62,7 @@
                 </div>
                 <div class="form-group">
                   <span class="event-date">Pick a Date</span>
-                   <input type="date" name ="start_date" class="form-control" id="inputEmail3">
+                   <input type="date" name ="start_date" class="form-control pickDateNewEvent" id="inputEmail3">
                 </div>
                 <input type=Submit value="Create a Trip" id="eventbtn">
              </form>

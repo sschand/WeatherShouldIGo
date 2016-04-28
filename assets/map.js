@@ -39,6 +39,7 @@ $(document).ready(function() {
         }
     }
 
+    //Error in New Event page (cannot set property 'onchange' of null on password.onchange)
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
 
@@ -63,7 +64,7 @@ $(document).ready(function() {
     //     e.preventDefault();
     //     var user = <?php echo json_encode($this->session->userdata('user_id')) ?>;
     //     console.log(user);
-        
+
     //     alert("Must be logged in to plan a trip!");
     // });
 
