@@ -55,7 +55,7 @@
 	          </li>
 						<li class="page-scroll">
 							 <?php if($this->session->userdata('user_name')){
-								echo "<a href='/Main/mytrip'>My Trips</a>";
+								echo "<a href='/Trip'>My Trips</a>";
 							} ?>
 	          </li>
 

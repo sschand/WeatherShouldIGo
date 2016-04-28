@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-fixed-top">
 	      <div class="container">
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -53,9 +53,7 @@
 
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
-            <?php if( $this->session->userdata('city_name')){
-              echo "<h3>You already have a plan for <a href='/Trip'>#".$this->session->userdata('city_name')."</a></h3>" ;
-            } else{ ?>
+
             <h5 class="list">Create an event for #<?= $this->session->userdata('city_name')?></h5>
             <div class="form-event">
               <form action="/Trip/create_trip" method="post" class="form-horizontal">
@@ -71,7 +69,7 @@
             </div>
          </div>
       </div>
-      <?php }?>
+
 
 
         </div>
@@ -82,6 +80,6 @@
       </div>
 
 
-
+<script src="/assets/nav.js"></script>
 </body>
 </html>

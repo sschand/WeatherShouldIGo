@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-fixed-top">
 	      <div class="container">
 	        <div class="navbar-header">
 	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -49,30 +49,81 @@
 
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <h4>My #Trips</h4>
-
             <ul class="list-group">
               <?php foreach ($triplist as $trip): ?>
                 <li class="list-group-item">
-                  <a href="/Trip/getTripByid/<?=$trip['trip_id']?>/<?=$trip['user_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge">14</span>
+                  <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge">14</span>
                 </li>
 
               <?php endforeach; ?>
             </ul>
             </div>
+            <?php if($this->session->userdata('display_trip_id')){?>
+
             <div class="col-md-5 col-md-offset-1">
-              <h5>Trip Detail</h5>
+              <h5>Trip Details</h5>
+              <p>
+                Destination: #<?= strtoupper($tripinfo[0]['city_name'])?>
+              </p>
+              <p>
+                Date: <?= $tripinfo[0]['start_date']?>
+              </p>
+              <p>
+                Description: <?= $tripinfo[0]['description']?>
+              </p>
+              <?php if(count($tripinfo) == 0){
+
+                echo "<p>You are going alone invite friends</p><a class='btn btn-default' href='/Trip/add_friend'>Invite Friends</a>";
+              } else {?>
               <table class="table">
                 <tr>
                   <th>Goers</th>
-                  <th>Date</th>
+                  <th>Action</th>
                 </tr>
+                <?php foreach ($tripinfo as $value): ?>
+                  <tr>
+
+                    <td><?=$value['user_name'];?></td>
+                    <td><a href="#">Remove</a></td>
+
+                  </tr>
+
+                <?php endforeach; ?>
+
 
               </table>
+              <?php
+              echo "<a href='/Trip/add_friend'><input type=Button value='Add Friends'></a>";
+            } ?>
 
+            <?php if($this->session->userdata('friends')){?>
+            <ul>
+               <?php foreach ($this->session->userdata('friends') as $friend): ?>
+                    <li><?=$friend['user_name']?></li>
+               <?php endforeach; ?>
+           </ul>
+           <?php } ?>
             </div>
 
+            <?php } ?>
+
+
+
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <h6>Trips that your friends are going</h6>
+            <ul class="list-group">
+              <?php foreach ($friendTripList as $trip): ?>
+                <li class="list-group-item">
+                  <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge">14</span>
+                </li>
+
+              <?php endforeach; ?>
+            </ul>
+          </div>
 
         </div>
 
@@ -84,7 +135,7 @@
 
 
 
-
+<script src="/assets/nav.js"></script>
 
 </body>
 </html>

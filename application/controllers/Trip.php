@@ -10,7 +10,9 @@ class Trip extends CI_Controller {
     public function index()
     {
       $trip = $this->User->get_trip($this->session->userdata('user_id'));
-      $data = array('triplist'=> $trip);
+      $friendTrip = $this->User->friend_trip($this->session->userdata('user_id'));
+      $trip = $this->User->get_trip($this->session->userdata('user_id'));
+      $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip);
       //var_dump($data);
       $this->load->view('trip',$data);
     }
@@ -21,12 +23,23 @@ class Trip extends CI_Controller {
       redirect(base_url().'trip');
     }
 
-    // public function getTripByid($trip_id,$user_id){
-    //   $info = $this->User->getTripByid($trip_id,$user_id);
-    //   $data = array('tripinfo',$info);
-    //   $this->load->view('trip',$data);
-    //
-    // }
+    public function getTripByid($trip_id){
+      $this->session->set_userdata('display_trip_id', $trip_id);
+      $trip = $this->User->get_trip($this->session->userdata('user_id'));
+      $info = $this->User->getTripByid($trip_id);
+      $friendTrip = $this->User->friend_trip($this->session->userdata('user_id'));
+
+      //var_dump($info);
+      $data = array('tripinfo'=>$info,'triplist'=> $trip,'friendTripList'=> $friendTrip);
+      $this->load->view('trip',$data);
+
+    }
+
+    public function add_friend(){
+      $friends = $this->User->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
+      $this->session->set_userdata('friends', $friends);
+      redirect(base_url().'Trip/getTripByid/'.$this->session->userdata('display_trip_id'));
+    }
 
 }
 
