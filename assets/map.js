@@ -51,8 +51,9 @@ $(document).ready(function() {
 
     // $(document).on("click",".plan a",function(e) {
     //     e.preventDefault();
-    //     // var user = <?php echo json_encode($this->session->userdata('user_id')) ?>;
-    //     // console.log(user);
+    //     var user = <?php echo json_encode($this->session->userdata('user_id')) ?>;
+    //     console.log(user);
+        
     //     alert("Must be logged in to plan a trip!");
     // });
 
