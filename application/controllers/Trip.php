@@ -79,7 +79,7 @@ class Trip extends CI_Controller {
         $message = $client->account->messages->sendMessage(
             '+14084713857', //Twilio Phone Number (Don't change for now)
             $phone, //Recipient Phone Number
-            'You have been invited to go to '.$trip['city_name'].' On '.$trip['start_date']     //Message to send in the text
+            $trip['description'].'... You have been invited to go to '.$trip['city_name'].' On '.$trip['start_date'].' by '.$this->session->userdata('user_name')     //Message to send in the text
         );
     }
 

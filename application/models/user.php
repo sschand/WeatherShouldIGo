@@ -115,8 +115,8 @@ class User extends CI_Model {
           return $this->db->query($query, $input)->result_array();
       }
       function getTripNameByTripId($tripId) {
-        $query = "SELECT city_name, start_date FROM trips_users JOIN trips
-                    ON trips_users.trip_id = trips.trip_id WHERE trips.trip_id = ?
+        $query = "SELECT city_name, start_date, description FROM trips_users JOIN trips
+                    ON trips_users.trip_id = trips.trip_id WHERE trips.trip_id = 2
                     GROUP BY trips.trip_id";
 
         $input = array($tripId);
