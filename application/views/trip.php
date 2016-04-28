@@ -38,7 +38,7 @@
   	          <li class=" hidden">
   	            <a href="#page-top"></a>
   	          </li>
-              <li class="page-scroll"><a href="/Main">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
+              <li class="page-scroll"><a href="/main">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
               <li class="page-scroll" ><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">Add Freinds <i class="fa fa-plus" aria-hidden="true"></i></a></li>
 	            <li class="page-scroll"><a href="/login/logoff">Log out <i class="fa fa-power-off" aria-hidden="true"></i></a></li>
 	          </ul>
@@ -55,7 +55,7 @@
           <!-- Add Friend to Friend List -->
           <button type="button" class="close friends" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <p>Add friends by User Name</p>
-          <form action="/Trip/add_friend_to_list" method="post">
+          <form action="/trip/add_friend_to_list" method="post">
             <input name="user_name" class="show-text" type =Text placeholder="user name"><input type=Submit value="Add Friend">
           </form>
         </div>
@@ -81,7 +81,7 @@
                 <ul class="list-group">
                   <?php foreach ($triplist as $trip): ?>
                     <li class="list-group-item">
-                      <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
+                      <a href="/trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
                     </li>
 
                   <?php endforeach; ?>
@@ -95,7 +95,7 @@
                 <ul class="list-group">
                   <?php foreach ($friendTripList as $trip): ?>
                     <li class="list-group-item">
-                      <a href="/Trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
+                      <a href="/trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
                     </li>
                   <?php endforeach; ?>
                 </ul>
@@ -143,7 +143,7 @@
                   <tr>
                     <td><?=$value['user_name'];?></td>
                     <?php if ($isInList) { ?>
-                    <td><a href="/Trip/remove_friend/<?=$value['user_id'];?>">Remove</a></td>
+                    <td><a href="/trip/remove_friend/<?=$value['user_id'];?>">Remove</a></td>
                     <?php } else { ?>
                         <td>&nbsp;</td>
                     <?php } ?>
@@ -157,7 +157,7 @@
             <?php if($this->session->userdata('friends') && $isInList):?>
               <!-- Invite Friends to the trip -->
               <ul class="addFriend">
-                <form action="/Trip/add_friendToTrip" method="post">
+                <form action="/trip/add_friendToTrip" method="post">
                   <select name="friend_select" class="friend_select">
                     <?php foreach ($this->session->userdata('friends') as $friend): ?>
                          <option value="<?=$friend['user_id']?>"><?=$friend['user_name']?></option>

@@ -38,8 +38,8 @@
   	          <li class=" hidden">
   	            <a href="#page-top"></a>
   	          </li>
-              <li class="page-scroll"><a href="/Main">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
-              <li class="page-scroll"><a href="/Trip">#MyTrips <i class="fa fa-suitcase" aria-hidden="true"></i></a></li>
+              <li class="page-scroll"><a href="/main">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
+              <li class="page-scroll"><a href="/trip">#MyTrips <i class="fa fa-suitcase" aria-hidden="true"></i></a></li>
 
 	            <li class="page-scroll"><a href="/login/logoff">Log out <i class="fa fa-power-off" aria-hidden="true"></i></a></li>
 
@@ -56,7 +56,7 @@
 
             <h5 class="list">Create an event for #<?= $this->session->userdata('city_name')?></h5>
             <div class="form-event">
-              <form action="/Trip/create_trip" method="post" class="form-horizontal">
+              <form action="/trip/create_trip" method="post" class="form-horizontal">
                 <div class="form-group">
                   <textarea name="description" class="form-control" rows="4" placeholder="write a description for your event"></textarea>
                 </div>
