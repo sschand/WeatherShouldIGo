@@ -12,6 +12,4 @@ $message = $client->account->messages->sendMessage(
     '+14088988860',
     'Test text'
 );
-
-echo $message->sid;
 ?>

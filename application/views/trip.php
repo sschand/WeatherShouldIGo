@@ -100,8 +100,9 @@
               <?php
 
             } ?>
-            
+
             <?php if($this->session->userdata('friends')){?>
+
               <ul class="addFriend">
                 <form action="/Trip/add_friendToTrip" method="post">
                   <select name="friend_select">
@@ -114,6 +115,7 @@
 
 
              </ul>
+
 
            <?php } ?>
             </div>
@@ -147,6 +149,14 @@
 
 
 
+        <script type="text/javascript">
+            $('li.list-group-item').click(function() {
+                $('.addFriend').hide();
+            })
+            $('.addFriendButton').click(function() {
+                $('.addFriend').show();
+            })
+        </script>
 <script src="/assets/nav.js"></script>
 
 </body>
