@@ -95,11 +95,11 @@
 
               </table>
               <?php
-              echo "<a href='/Trip/add_friend'><input type=Button value='Add Friends'></a>";
+              echo "<a class='addFriendButton' href='/Trip/add_friend'><input type=Button value='Add Friends'></a>";
             } ?>
 
             <?php if($this->session->userdata('friends')){?>
-            <ul>
+            <ul class="addFriend">
                <?php foreach ($this->session->userdata('friends') as $friend): ?>
                     <li><?=$friend['user_name']?></li>
                <?php endforeach; ?>
@@ -135,6 +135,14 @@
 
 
 
+        <script type="text/javascript">
+            $('li.list-group-item').click(function() {
+                $('.addFriend').hide();
+            })
+            $('.addFriendButton').click(function() {
+                $('.addFriend').show();
+            })
+        </script>
 <script src="/assets/nav.js"></script>
 
 </body>
