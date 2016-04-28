@@ -44,3 +44,40 @@ body{
 select{
   color:black !important;
 }
+
+span.date {
+    display: block;
+}
+
+table th.goers{
+  border-right:1px solid white;
+}
+
+p.destination{
+  text-decoration: underline;
+}
+
+.friendsTrips {
+    margin-top: 20%;
+}
+
+.modal-content {
+    width: 129% !important;
+    height: 170px !important;
+    padding: 28px;
+    margin-top: 64%;
+}
+
+.modal-content p{
+  color: white;
+    text-align: center;
+}
+input.show-text {
+    width: 173px;
+    margin-right: 10px;
+}
+.close.friends{
+  position: relative;
+left: 5%;
+top: -26%;
+}

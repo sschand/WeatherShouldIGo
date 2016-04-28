@@ -38,27 +38,46 @@
   	          <li class=" hidden">
   	            <a href="#page-top"></a>
   	          </li>
-              <li class="page-scroll"><a href="/Main">Home</a></li>
-	            <li class="page-scroll"><a href="/login/logoff">Log out</a></li>
+              <li class="page-scroll"><a href="/Main">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
+              <li class="page-scroll" ><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">Add Freinds <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+	            <li class="page-scroll"><a href="/login/logoff">Log out <i class="fa fa-power-off" aria-hidden="true"></i></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
 	</nav>
     <!-- Navbar Ends Here -->
 
+    <!-- Modal starts Here -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+          <!-- Add Friend to Friend List -->
+          <button type="button" class="close friends" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <p>Add friends by User Name</p>
+          <form action="/Trip/add_friend_to_list" method="post">
+            <input name="user_name" class="show-text" type =Text placeholder="user name"><input type=Submit value="Add Friend">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
     <!-- Container starts here -->
     <div class="container">
-        <!-- Add Friend to Friend List -->
-        <form action="/Trip/add_friend_to_list" method="post">
-          <input name="user_name" class="show-text" type =Text><input type=Submit value="Add Friend">
-        </form>
+
 
         <!-- My Trips -->
         <div class="row">
           <div class="col-md-5">
             <div class="myTrips">
             <!-- My Trips -->
-                <h4>My #Trips</h4>
+                <h4>My #Trips <i class="fa fa-suitcase" aria-hidden="true"></i></h4>
+                <?php if(count($triplist)==0){?>
+                   <p>
+                    You have no trips yet!
+                   </p>
+                <?php } else {?>
                 <ul class="list-group">
                   <?php foreach ($triplist as $trip): ?>
                     <li class="list-group-item">
@@ -67,6 +86,7 @@
 
                   <?php endforeach; ?>
                 </ul>
+                <?php } ?>
             </div>
 
             <div class="friendsTrips">
@@ -88,10 +108,13 @@
 
             <!-- Trip Details -->
             <div class="col-md-5 col-md-offset-1">
-              <h5>Trip Details</h5>
-              <p>Destination: #<?= strtoupper($tripinfo[0]['city_name'])?></p>
-              <p>Date: <?= $tripinfo[0]['start_date']?></p>
-              <p>Description: <?= $tripinfo[0]['description']?></p>
+              <h5>Trip Details <i class="fa fa-wpforms" aria-hidden="true"></i></h5>
+              <p class="destination">TO: #<?= strtoupper($tripinfo[0]['city_name'])?></p>
+              <span class="date">DATE: <?php $start_date = strtotime($tripinfo[0]['start_date']);
+              $newformat = date('d M - Y',$start_date);
+              echo $newformat;
+               ?></span>
+              <span>DESCRIPTION: <?= $tripinfo[0]['description']?></span>
               <!-- If Nobody is going to Trip... -->
               <?php if(count($tripinfo) == 0){
                 echo "<p>You are going alone invite friends</p><a class='btn btn-default' href='/Trip/add_friend'>Invite Friends</a>";
@@ -101,8 +124,8 @@
               <!-- Otherwise, we show the list of people going on the trip -->
               <table class="table">
                 <tr>
-                  <th>Goers</th>
-                  <th>Action</th>
+                  <th class="goers">GOERS</th>
+                  <th>ACTION</th>
                 </tr>
                 <!-- Shows users on the trip and gives access to Remove users from the Trip -->
 

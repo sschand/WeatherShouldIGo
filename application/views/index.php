@@ -23,6 +23,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/skeleton.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<script src="/assets/jquery.min.js" type="text/javascript"></script>
@@ -48,20 +49,20 @@
 	          </li>
 	          <li class="page-scroll">
 							<?php if($this->session->userdata('user_name')){
-							 echo "<a href='#'>Welcome ".$this->session->userdata('user_name')."!</a>";
+							 echo "<a href='#'>Welcome ".$this->session->userdata('user_name')."! <i class='fa fa-smile-o' aria-hidden='true'></i></a>";
 						 } else {?>
 	            <a href="#" data-toggle="modal" data-target="#myModalLogin">Login</a>
 							<?php } ?>
 	          </li>
 						<li class="page-scroll">
 							 <?php if($this->session->userdata('user_name')){
-								echo "<a href='/Trip'>My Trips</a>";
+								echo "<a href='/Trip'>My Trips <i class='fa fa-suitcase' aria-hidden='true'></i></a>";
 							} ?>
 	          </li>
 
 	          <li class="page-scroll">
 							<?php if($this->session->userdata('user_name')){
-							 echo "<a href='/login/logoff'>Log Out</a>";
+							 echo "<a href='/login/logoff'>Log Out <i class='fa fa-power-off' aria-hidden='true'></i></a>";
 						 } else {?>
 	            <a href="#" data-toggle="modal" data-target="#myModalRegister" >Register</a>
 							<?php } ?>
@@ -133,7 +134,7 @@
 								<input id="dob" class="col-sm-10" name="dob" type="text" onfocus="(this.type='date')" id="datepicker" placeholder="Date of Birth (must be at least 21 years)" required max="1995-04-29">  <!-- Date - for 21+ hard-coded for now  -->
 							</div>
 							<div >
-								<input id="phone" class="col-sm-10" name="phone" type="number" placeholder="ex : 15559995555" maxlength="10" required>  
+								<input id="phone" class="col-sm-10" name="phone" type="number" placeholder="ex : 15559995555" maxlength="10" required>
 							</div>
 							<div class="">
 								<input type="submit" class="btn btn-default" value="Register" id="regbtn" required>
@@ -162,7 +163,7 @@
 	</div>
 	<?php } ?>
 
-	
+
 	<?php if ($this->session->flashdata('match')){ ?>
 	<div class="alert alert-success alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

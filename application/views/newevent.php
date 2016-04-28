@@ -38,10 +38,10 @@
   	          <li class=" hidden">
   	            <a href="#page-top"></a>
   	          </li>
-              <li class="page-scroll"><a href="/Main">Home</a></li>
-              <li class="page-scroll"><a href="/Trip">#MyTrips</a></li>
+              <li class="page-scroll"><a href="/Main">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
+              <li class="page-scroll"><a href="/Trip">#MyTrips <i class="fa fa-suitcase" aria-hidden="true"></i></a></li>
 
-	            <li class="page-scroll"><a href="/login/logoff">Log out</a></li>
+	            <li class="page-scroll"><a href="/login/logoff">Log out <i class="fa fa-power-off" aria-hidden="true"></i></a></li>
 
 	          </ul>
 	        </div><!--/.nav-collapse -->
