@@ -48,14 +48,39 @@ class Trip extends CI_Controller {
 
     }
 
-  
+
     public function add_friendToTrip(){
       $info = $this->input->post('friend_select');
       //var_dump($info);
      $this->User->add_friendToTrip($info,$this->session->userdata('display_trip_id'));
+
+     //Twilio Sending Message grabs
+     $friendNumber = $this->User->getPhoneByUserId($info);
+     $trip = $this->User->getTripNameByTripId($this->session->userdata('display_trip_id'));
+     $this->sendMessageForTrip($friendNumber, $trip);
+
      $this->session->unset_userdata('friends');
 
        redirect(base_url().'Trip/getTripByid/'.$this->session->userdata('display_trip_id'));
+    }
+    protected function sendMessageForTrip($phone, $trip) {
+        //Requires a file set in assets before you can accomplish everything
+        set_include_path(dirname(__FILE__)."/../");
+        require('assets/services/Twilio.php');
+
+        //Account based tokens, Don't touch
+        $account_sid = 'AC0bf0467f0af56fc24371c76da012e428';
+        $auth_token = 'eea66dc4d709d27d2469d6d609af0dbf';
+
+        //Creates new Twilio Service
+        $client = new Services_Twilio($account_sid, $auth_token);
+
+        //Sending message area
+        $message = $client->account->messages->sendMessage(
+            '+14084713857', //Twilio Phone Number (Don't change for now)
+            $phone, //Recipient Phone Number
+            'You have been invited to go to '.$trip['city_name'].' On '.$trip['start_date']     //Message to send in the text
+        );
     }
 
     public function add_friend_to_list(){

@@ -102,14 +102,26 @@ class User extends CI_Model {
 
       }
 
-
-
-
-
       function get_people($trip_id){
         $query = "SELECT * FROM trips_users WHERE trip_id = ?";
         $value = array($trip_id);
         return $this->db->query($query, $value)->result_array();
+      }
+
+      function getPhoneByUserId($userId) {
+          $query = "SELECT users.phone FROM users WHERE users.user_id = ?";
+          $input = array($userId);
+
+          return $this->db->query($query, $input)->result_array();
+      }
+      function getTripNameByTripId($tripId) {
+        $query = "SELECT city_name, start_date FROM trips_users JOIN trips
+                    ON trips_users.trip_id = trips.trip_id WHERE trips.trip_id = ?
+                    GROUP BY trips.trip_id";
+
+        $input = array($tripId);
+
+        return $this->db->query($query, $input)->row_array();
       }
 
 
