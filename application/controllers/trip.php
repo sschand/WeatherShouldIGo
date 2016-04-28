@@ -30,7 +30,7 @@ class Trip extends CI_Controller {
 
     public function create_trip(){
       $info = $this->input->post();
-      $this->User->create_trip($this->session->userdata('city_name'),$this->session->userdata('user_id'),$info);
+      $this->user->create_trip($this->session->userdata('city_name'),$this->session->userdata('user_id'),$info);
       redirect(base_url().'trip');
     }
 

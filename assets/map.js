@@ -266,7 +266,7 @@ function getInstagram(name, weather) {
         var weatherType = weather;
 
         //$('h3.list').html("List of people going to "+name);
-        $('.trip').html('<span class="plan"><a href="/Login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
+        $('.trip').html('<span class="plan"><a href="/login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
         $('.span').click(function(){
 
         })
