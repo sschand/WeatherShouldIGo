@@ -55,7 +55,7 @@
 	          </li>
 						<li class="page-scroll">
 							 <?php if($this->session->userdata('user_name')){
-								echo "<a href='/Main/mytrip'>My Trips</a>";
+								echo "<a href='/Trip'>My Trips</a>";
 							} ?>
 	          </li>
 
@@ -132,6 +132,9 @@
 							<div >
 								<input id="dob" class="col-sm-10" name="dob" type="text" onfocus="(this.type='date')" id="datepicker" placeholder="Date of Birth (must be at least 21 years)" required max="1995-04-29">  <!-- Date - for 21+ hard-coded for now  -->
 							</div>
+							<div >
+								<input id="phone" class="col-sm-10" name="phone" type="number" placeholder="ex : 15559995555" maxlength="10" required>  
+							</div>
 							<div class="">
 								<input type="submit" class="btn btn-default" value="Register" id="regbtn" required>
 							</div>
@@ -152,6 +155,14 @@
 	<?php } ?>
 
 
+	<?php if ($this->session->flashdata('loggedFail')){ ?>
+	<div class="alert alert-success alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <strong><?php echo $this->session->flashdata('loggedFail'); ?></strong>
+	</div>
+	<?php } ?>
+
+	
 	<?php if ($this->session->flashdata('match')){ ?>
 	<div class="alert alert-success alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

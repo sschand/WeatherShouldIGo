@@ -8,6 +8,8 @@ class Main extends CI_Controller {
     }
     public function index()
     {
+      $this->session->unset_userdata('display_trip_id');
+        $this->session->unset_userdata('friends');
         $this->load->view('index');
     }
     public function map()

@@ -44,11 +44,9 @@ class Login extends CI_Controller {
 
 		$user = $this->User->store_user_login($email);
 
-			$this->session->set_userdata('user_id',$user['user_id']);
-			$this->session->set_userdata('user_name',$user['user_name']);
-			redirect(base_url().'/Main');
-
-
+		$this->session->set_userdata('user_id',$user['user_id']);
+		$this->session->set_userdata('user_name',$user['user_name']);
+		redirect(base_url().'/Main');
 	}
 
 	public function validate_user($email, $password){
@@ -69,17 +67,20 @@ class Login extends CI_Controller {
 
 
 public function logged($name){
+
 	$this->session->set_userdata('city_name',$name);
 	if($this->session->userdata('user_id')){
 		//$this->User->insertCityByName($name,$this->session->userdata('user_id'));
 		$this->load->view('newevent');
 	} else {
-		$this->session->set_flashdata('loggedFail','<script type="text/javascript">alert("Must be logged in to plan a trip!");</script>');
+		$this->session->set_flashdata('loggedFail','Must be logged in to plan a trip!');
 		redirect(base_url().'');
 	}
 }
 
-
+	// public function plan_trip($city){
+	// 	$this->load->view('newevent');
+	// }
 }
 
 //end of main controller

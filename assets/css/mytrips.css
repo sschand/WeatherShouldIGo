@@ -15,5 +15,20 @@ html{
 .event-date{
 position: relative;
 right:40%;
+}
 
+.join{
+  position: relative;
+    left: 22%;
+}
+
+.row{
+  margin-bottom: 7%;
+}
+
+input{
+  color:white !important;
+}
+table td{
+  text-align: center;
 }
