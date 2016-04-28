@@ -26,7 +26,7 @@ CREATE TABLE `friends` (
   `friend_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`friend_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `friends` (
 
 LOCK TABLES `friends` WRITE;
 /*!40000 ALTER TABLE `friends` DISABLE KEYS */;
+INSERT INTO `friends` VALUES (1,5),(2,3),(3,2),(5,1);
 /*!40000 ALTER TABLE `friends` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,12 +52,9 @@ CREATE TABLE `trips` (
   `start_date` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
   `description` text,
-  PRIMARY KEY (`trip_id`),
-  KEY `fk_trips_users_idx` (`user_id`),
-  CONSTRAINT `fk_trips_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`trip_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +63,7 @@ CREATE TABLE `trips` (
 
 LOCK TABLES `trips` WRITE;
 /*!40000 ALTER TABLE `trips` DISABLE KEYS */;
-INSERT INTO `trips` VALUES (63,'sanjose','2016-04-08 00:00:00','2016-04-27 18:59:55',NULL,2,'this is my first event for san jose ');
+INSERT INTO `trips` VALUES (63,'sanjose','2016-04-08 00:00:00','2016-04-27 18:59:55',NULL,'this is my first event for san jose '),(64,'salina','2016-04-14 00:00:00','2016-04-27 20:47:54',NULL,'pack ur bag we r going to salina'),(65,'lasvegas','2016-04-14 00:00:00',NULL,NULL,'bring girls :D'),(67,'salvador',NULL,NULL,NULL,NULL),(68,'phoenix','2016-04-09 00:00:00','2016-04-27 21:46:39',NULL,'bal bal abla'),(69,'lasvegas','2016-04-15 00:00:00','2016-04-27 21:48:29',NULL,'knkdn/wd');
 /*!40000 ALTER TABLE `trips` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,6 +91,7 @@ CREATE TABLE `trips_users` (
 
 LOCK TABLES `trips_users` WRITE;
 /*!40000 ALTER TABLE `trips_users` DISABLE KEYS */;
+INSERT INTO `trips_users` VALUES (63,2),(65,2),(63,3);
 /*!40000 ALTER TABLE `trips_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +112,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +121,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,NULL,NULL,NULL,'2016-04-26 17:13:31','1987-12-12 00:00:00',NULL,NULL),(2,'pegah','pegaaaaah','asdfasdf',NULL,NULL,NULL,'pegah@reviveapp.com'),(3,'aaa','aa','asdfasdf','2016-04-26 18:51:57','1980-11-11 00:00:00','2016-04-26 18:51:57','manny@reviveapp.com');
+INSERT INTO `users` VALUES (1,'sharol','chand','asdfasdf','2016-04-26 17:13:31','1987-12-12 00:00:00',NULL,'sharol@yahoo.com'),(2,'pegah','pegaaaaah','asdfasdf',NULL,NULL,NULL,'pegah@reviveapp.com'),(3,'aaa','aa','asdfasdf','2016-04-26 18:51:57','1980-11-11 00:00:00','2016-04-26 18:51:57','manny@reviveapp.com'),(4,'howard','ling','asdfasdf',NULL,NULL,NULL,'howard@gmail.com'),(5,'vadim','vadim','asdfasdf',NULL,NULL,NULL,'vadim@yahoo.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -135,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-27 13:24:18
+-- Dump completed on 2016-04-27 18:30:48
