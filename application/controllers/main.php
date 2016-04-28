@@ -21,6 +21,10 @@ class Main extends CI_Controller {
       // $data = array('userdata'=>$userTrip);
       $this->load->view('trip');
     }
+
+    public function sms() {
+        $this->load->view('twilio');
+    }
 }
 
 //end of main controller
