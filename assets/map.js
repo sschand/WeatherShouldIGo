@@ -168,8 +168,8 @@ function initMap() {
                             //Gets the Instagram pictures (function on the bottom)
                             getInstagram(name, type);
 
-                            console.log(this.forecast);
-                            console.log('smoking is bad');
+                            // console.log(this.forecast);
+                            // console.log('smoking is bad');
                         })
                         //Push them all into one array
                         markers.push(marker);
@@ -193,6 +193,12 @@ function initMap() {
                     for (var i = 0; i < markers.length; i++) {
                         markers[i].setMap(map);
                     }
+                    // Reset City Details, forecast, trip button, and images
+                    $("#images").html('');
+                    $(".trip").html('');
+                    $(".details").html('<!-- Name of the City --><h4 class="name"></h4>');
+                    $(".spec_det").html('<div class="deets twelve columns" style="width: 100%"></div>');
+
                 } else {
                     if (weatherToMatch == 'sun') {
                         weatherToMatch = 'Clear';
@@ -235,20 +241,16 @@ function getInstagram(name, weather) {
     weather ="fog";
   } else if(weather == "Drizzle"){
     weather ="rain";
-  }
+  } 
 
-  // name = "SanJose";
-  // // weather = "snow";
-  // console.log(name);
     // this will be shown while user is waiting for response
-    $('#loading').html("<img src='assets/images/spinner.gif'>");
+    $('#loading').html("<img src='assets/images/loading.gif'>");
     $('#images').html("");
 
     $.post('https://api.instagram.com/v1/tags/'+name+weather+'/media/recent?callback=?&count=300&access_token=2205178294.324cf62.a569c4db3a394908bfa806cfafae2397', $(this).serialize(), function(res) {
         var images_string = "";
         var weatherType = weather;
 
-        console.log('weather is '+weather);
         //$('h3.list').html("List of people going to "+name);
         $('.trip').html('<span class="plan"><a href="/Login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
         $('.span').click(function(){
@@ -256,13 +258,8 @@ function getInstagram(name, weather) {
         })
 
         if(res.data.length > 0){
-            console.log(res.data);
-            // console.log(res.data[i].tags.length);
             for (var i = 0; i < res.data.length; i++) {
-                // for (var i = 0; i < res.data[i].tags.length; i++) {
-                // console.log(res.data[i].tags);
-                if(res.data[i].tags.includes(weatherType) && res.data[i].tags[i] != 'selfie'){
-                    console.log(res.data[i].tags);
+                  if(!(res.data[i].tags.includes('selfie'))){
                     images_string +='<img src='+res.data[i].images.low_resolution.url+'>';
                 }
             }
@@ -273,8 +270,7 @@ function getInstagram(name, weather) {
             images_string += "<h2>No images found :(</h2>";
         }
 
-          // remove loading image
-
+        // remove loading image
         $('#loading').html("");
         $('#images').html(images_string);
     }, 'json');

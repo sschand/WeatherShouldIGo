@@ -180,13 +180,14 @@
 	<!-- Map -->
 	<div id='map'></div>
 
+
 	<!-- Details: Name of city and also weather condition -->
 	<div class="details">
 		<!-- Name of the City -->
 		<h4 class="name"></h4>
 	</div>
 
-	<div class="row">
+	<div class="row spec_det">
 		<div class="deets twelve columns" style="width: 100%"></div>
 	</div>
 
