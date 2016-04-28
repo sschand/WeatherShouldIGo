@@ -5,7 +5,7 @@ class Trip extends CI_Controller {
         parent::__construct();
         // When encountering No Access Control Origin issues
         //$this->load->library('PHPRequests');
-        $this->load->model('User');
+        $this->load->model('user');
     }
     public function index()
     {
@@ -30,7 +30,7 @@ class Trip extends CI_Controller {
 
     public function create_trip(){
       $info = $this->input->post();
-      $this->User->create_trip($this->session->userdata('city_name'),$this->session->userdata('user_id'),$info);
+      $this->user->create_trip($this->session->userdata('city_name'),$this->session->userdata('user_id'),$info);
       redirect(base_url().'trip');
     }
 
@@ -61,7 +61,7 @@ class Trip extends CI_Controller {
 
      $this->session->unset_userdata('friends');
 
-       redirect(base_url().'Trip/getTripByid/'.$this->session->userdata('display_trip_id'));
+       redirect(base_url().'trip/getTripByid/'.$this->session->userdata('display_trip_id'));
     }
     protected function sendMessageForTrip($phone, $trip) {
         //Requires a file set in assets before you can accomplish everything
@@ -94,7 +94,7 @@ class Trip extends CI_Controller {
 
     public function remove_friend($friend_id){
       $this->User->remove_friend($friend_id);
-      redirect(base_url().'Trip/getTripByid/'.$this->session->userdata('display_trip_id'));
+      redirect(base_url().'trip/getTripByid/'.$this->session->userdata('display_trip_id'));
     }
 
 }

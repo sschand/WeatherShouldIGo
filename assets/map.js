@@ -27,9 +27,13 @@ $(document).ready(function() {
         }
     }
 
-    //Error in New Event page (cannot set property 'onchange' of null on password.onchange)
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
+    $("#password").on("change", function(){
+        validatePassword();
+    });
+
+    $("#confirm_password").on("keyup", function(){
+        validatePassword();
+    });
 
     //LOGIN
     $("#login_form").on('submit', function(e){
@@ -284,7 +288,7 @@ function getInstagram(name, weather) {
         var weatherType = weather;
 
         //$('h3.list').html("List of people going to "+name);
-        $('.trip').html('<span class="plan"><a href="/Login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
+        $('.trip').html('<span class="plan"><a href="/login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
         $('.span').click(function(){
 
         })
