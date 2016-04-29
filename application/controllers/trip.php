@@ -57,7 +57,9 @@ class Trip extends CI_Controller {
       $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
       $this->session->set_userdata('friends', $friends);
 
-
+      if($this->session->userdata('userCity') != 'San+Jose'){
+          $this->session->set_userdata('userCity', 'San+Jose');
+      }
       $userAir = $this->getAirport($this->session->userdata('userCity'));
       $this->session->set_userdata('userAirport', $userAir);
 
