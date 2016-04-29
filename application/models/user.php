@@ -53,7 +53,7 @@ class User extends CI_Model {
       function getTripByid($trip_id){
         $query = "SELECT users.user_name,trips.city_name,trips.description,trips.start_date,users.user_id FROM users JOIN trips_users ON users.user_id = trips_users.user_id
                   JOIN trips ON trips.trip_id = trips_users.trip_id
-                  WHERE trips_users.trip_id=?";
+                  WHERE trips_users.trip_id=? ORDER BY users.user_name ASC";
         $values = array($trip_id);
         return $this->db->query($query,$values)->result_array();
       }
@@ -66,7 +66,7 @@ class User extends CI_Model {
         JOIN users ON friends.user_id = users.user_id
         JOIN trips_users ON trips_users.user_id = users.user_id
         WHERE trips_users.trip_id = ?)
-        group by users.user_name
+        group by users.user_name ORDER BY users.user_name ASC
         ";
         $values = array($id,$trip_id);
         return $this->db->query($query,$values)->result_array();
@@ -125,7 +125,7 @@ class User extends CI_Model {
       }
 
       function getUsersByUsername($userNotToGet){
-          $query = "SELECT user_name, user_id FROM users where user_id!=? AND user_id not in (SELECT friends.user_id as friend_id from users JOIN friends on friends.friend_id=users.user_id JOIN users as user_friends on friends.user_id = user_friends.user_id WHERE users.user_id = ?)";
+          $query = "SELECT user_name, user_id FROM users WHERE user_id!=? AND user_id NOT IN (SELECT friends.user_id AS friend_id FROM users JOIN friends ON friends.friend_id=users.user_id JOIN users AS user_friends ON friends.user_id = user_friends.user_id WHERE users.user_id = ?) ORDER BY user_name ASC";
           $values = array($userNotToGet, $userNotToGet);
 
           return $this->db->query($query, $values)->result_array();
