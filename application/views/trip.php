@@ -97,7 +97,7 @@
 
             <div class="friendsTrips">
                 <!-- Trips that friends are going to -->
-                <h6>Trips that your friends are going on</h6>
+                <h6>Trips that your friends are going on <i class="fa fa-users" aria-hidden="true"></i></h6>
                 <ul class="list-group">
                   <?php foreach ($friendTripList as $trip): ?>
                     <li class="list-group-item">
