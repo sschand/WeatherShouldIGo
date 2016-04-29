@@ -29,7 +29,6 @@ class Main extends CI_Controller {
         $this->load->view('twilio');
     }
 
-
 }
 
 //end of main controller

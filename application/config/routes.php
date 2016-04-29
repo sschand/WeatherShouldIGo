@@ -8,6 +8,7 @@ $route['test'] = "main/test";
 $route['getUserCity/(:any)'] = 'main/getUserCity/$1';
 
 $route['sms'] = 'main/sms';
+$route['main/get_usernames/(:num)'] = 'main/get_usernames/$1';
 
 $route['404_override'] = '';
 
