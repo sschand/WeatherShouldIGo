@@ -62,10 +62,10 @@ p.destination{
 }
 
 .modal-content {
-    width: 129% !important;
-    height: 170px !important;
-    padding: 28px;
-    margin-top: 64%;
+  width: 129% !important;
+  height: 213px !important;
+  padding: 41px;
+  margin-top: 64%;
 }
 
 .modal-content p{
@@ -80,4 +80,9 @@ input.show-text {
   position: relative;
 left: 5%;
 top: -26%;
+}
+
+.add-friend{
+  position: relative;
+left: 25%;
 }
