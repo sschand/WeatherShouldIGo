@@ -36,14 +36,11 @@ class Trip extends CI_Controller {
             redirect(base_url());
         }
 
-<<<<<<< HEAD
     //   var_dump($this->session->userdata('userAirport'));
 
 
       //var_dump($data);
-      $this->load->view('trip',$data);
-=======
->>>>>>> 3965e8e941ca565a00b5c3e5c1ba977897a92b67
+    //   $this->load->view('trip',$data);
     }
 
     public function create_trip(){
@@ -135,7 +132,6 @@ class Trip extends CI_Controller {
       $this->user->remove_friend($friend_id);
       redirect(base_url().'trip/getTripByid/'.$this->session->userdata('display_trip_id'));
     }
-<<<<<<< HEAD
 
 
 
@@ -167,8 +163,6 @@ class Trip extends CI_Controller {
     }
 
 
-=======
->>>>>>> 3965e8e941ca565a00b5c3e5c1ba977897a92b67
 }
 
 //end of main controller

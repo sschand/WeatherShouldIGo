@@ -187,12 +187,7 @@
         </div>
         <!-- ^ is the end of the row -->
 
-        <div class="row">
-          <div class="col-md-5">
-            <!-- Moved to the first row, under the left col-md-5 -->
-            <?php //var_dump($this->session->userdata('user_name')); ?>
-          </div>  <!-- End col-md-5 -->
-      </div> <!-- End of the Second row -->
+        
     </div>
     <!-- End of Container -->
 
