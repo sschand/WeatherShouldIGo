@@ -2,14 +2,14 @@
 
 
 // Final expedia URL to shove all this shit into: https://www.expedia.com/Flights-Search?trip=oneway&leg1=from:Seattle,%20United%20States%20(SEA),to:Las%20Vegas,%20United%20States%20(LAS),departure:04/30/2016TANYT&passengers=children:0,adults:2,seniors:0&mode=search
+//
+//
+// $city = $data; // Replace this with city name passed in from trip planning form
+// $splitCity = explode(" ", $city);
+// $getCity = join("+" , $splitCity);	// Replaces any spaces with +'s for url
 
 
-$city = $data; // Replace this with city name passed in from trip planning form
-$splitCity = explode(" ", $city);
-$getCity = join("+" , $splitCity);	// Replaces any spaces with +'s for url
-
-
-$html = @file_get_contents('http://www.travelmath.com/nearest-airport/' . "$getCity");
+$html = @file_get_contents('http://www.travelmath.com/nearest-airport/' . "$this->session->userdata('userCity')");
 
 $test = explode("International airports near", $html);
 $test3 = explode('"domestic-distance"', $test[1]);

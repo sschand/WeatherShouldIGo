@@ -41,8 +41,9 @@ $(document).ready(function() {
 
           var user = $('#email_login').val();
           var password = $('#password_login').val();
+          var user_city_name = $('#user_city_name').val();
 
-          $.get('/login/validate_user/'+user+'/'+password, function(res) {
+          $.get('/login/validate_user/'+user+'/'+password+'/'+user_city_name, function(res) {
               if(res!= 'User and email correct'){
                   $("#myModalLogin .modal-body .error").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>'+res+'</strong></div>');
               }else{
@@ -60,7 +61,31 @@ $(document).ready(function() {
     //     alert("Must be logged in to plan a trip!");
     // });
 
-})
+    if (navigator.geolocation) {
+
+	    navigator.geolocation.getCurrentPosition(function(user)
+	    {
+		    var xlat = user.coords.latitude;
+		    var xlon = user.coords.longitude;
+
+		    var url="http://api.openweathermap.org/data/2.5/weather?lat="+xlat+"&lon="+xlon+"&appid=a77c8cad8b4334e38b44ef4d1ecf0272";
+
+		    $.get(url, function(userLoc){
+                var cityName = userLoc.name.split(" ");
+                cityName = cityName.join('+');
+                console.log(cityName);
+                $('#myModalLogin form').append('<input id="user_city_name" type="hidden" value ="'+cityName+'" name="user_city_name">');
+                //console.log(userLoc.name);
+
+            }, 'json') //location
+
+            // End of getting location
+
+
+        }) //dunno
+    }   //end of geolocation If
+
+}); // End of document.ready
 
 //Function for map initialization and getting weather by distance
 function initMap() {
@@ -155,6 +180,7 @@ function initMap() {
                             var dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
                             var name = this.title;
+                            var fullName = this.title;
                             var type = this.type;
                             $('.details').html('<h4>'+name+'</h4>');
                             $('.deets').css('borderBottom', '1px solid rgba(136, 136, 136, 0.76)');
@@ -202,7 +228,7 @@ function initMap() {
                             }
 
                             //Gets the Instagram pictures (function on the bottom)
-                            getInstagram(name, type);
+                            getInstagram(name, type, fullName);
 
                             // console.log(this.forecast);
                             // console.log('smoking is bad');
@@ -269,8 +295,9 @@ function initMap() {
 ///////////////////////////////////////////////////////////////////////////////
 
 function getInstagram(name, weather) {
+
   name = name.split(" ");
-  name = name.join('').toLowerCase();
+  name = name.join('');
   if(weather == "Clouds" || weather =="Clear"){
     weather = "sun";
   } else if(weather == "Haze" || weather == "Mist"){
@@ -283,12 +310,13 @@ function getInstagram(name, weather) {
     $('#loading').html("<img src='assets/images/loading.gif'>");
     $('#images').html("");
 
+
     $.post('https://api.instagram.com/v1/tags/'+name+weather+'/media/recent?callback=?&count=300&access_token=2205178294.324cf62.a569c4db3a394908bfa806cfafae2397', $(this).serialize(), function(res) {
         var images_string = "";
         var weatherType = weather;
 
         //$('h3.list').html("List of people going to "+name);
-        $('.trip').html('<span class="plan"><a href="/login/logged/'+name+'">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
+        $('.trip').html('<span class="plan"><a href="/login/logged/'+name+'/">Plan a Trip?<i class="fa fa-plane" aria-hidden="true"></i></a></span>');
         $('.span').click(function(){
 
         })
@@ -310,4 +338,6 @@ function getInstagram(name, weather) {
         $('#loading').html("");
         $('#images').html(images_string);
     }, 'json');
+
+
 }

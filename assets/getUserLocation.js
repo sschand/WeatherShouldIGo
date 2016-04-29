@@ -12,23 +12,25 @@ $(document).ready(function() {
 
 		    $.get(url, function(res){
 
-		    	console.log(res.name);
+		    	// console.log(res.name);
 				var originCity = res.name;
 
-				$('.getAirport').click(function() {
+				// $('.myTripButton').click(function() {
 					// $.post('/getAirport', {data: 1},function(response, status) {
 					// 	alert();
 					// })
 					$.ajax({
 						type: 'POST',
-						url: '/getAirport/'+this.data,
+						url: '/getUserCity/'+this.data,
 						data: originCity,
 						success: function(data){
-							var goto = '/getAirport/'+this.data
-							window.location.href = goto;
+							console.log(this.data);
+							$('.flightLink').attr('href', this.data);
+							// var goto = '/getAirport/'+this.data
+							// window.location.href = goto;
 						}
 					})
-				})
+				// })
 
 		    }, 'json')
 
