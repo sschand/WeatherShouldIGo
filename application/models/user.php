@@ -53,7 +53,7 @@ class User extends CI_Model {
       function getTripByid($trip_id){
         $query = "SELECT users.user_name,trips.city_name,trips.description,trips.start_date,users.user_id FROM users JOIN trips_users ON users.user_id = trips_users.user_id
                   JOIN trips ON trips.trip_id = trips_users.trip_id
-                  WHERE trips_users.trip_id=?";
+                  WHERE trips_users.trip_id=? ORDER BY users.user_name ASC";
         $values = array($trip_id);
         return $this->db->query($query,$values)->result_array();
       }
@@ -66,7 +66,7 @@ class User extends CI_Model {
         JOIN users ON friends.user_id = users.user_id
         JOIN trips_users ON trips_users.user_id = users.user_id
         WHERE trips_users.trip_id = ?)
-        group by users.user_name
+        group by users.user_name ORDER BY users.user_name ASC
         ";
         $values = array($id,$trip_id);
         return $this->db->query($query,$values)->result_array();
