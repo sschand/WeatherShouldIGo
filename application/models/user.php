@@ -21,7 +21,8 @@ class User extends CI_Model {
         return $this->db->query($query,$values)->row_array();
       }
 
-      function create_trip($city_name,$user_id,$info){
+      function create_trip($city_name, $info){
+
         $query = "INSERT INTO trips (city_name,description,start_date,created_at) VALUES (?,?,?,?)";
         $values = array($city_name,$info['description'],$info['start_date'],date("Y-m-d, H:i:s"));
         $this->db->query($query,$values);
@@ -30,7 +31,7 @@ class User extends CI_Model {
         $trip_id = $this->db->query($query1)->row_array();
 
         $query2 ="INSERT INTO trips_users (trip_id,user_id) VALUES(?,?)";
-        $values2 =array($trip_id['trip_id'],$user_id);
+        $values2 =array($trip_id['trip_id'],$this->session->userdata('user_id'));
         $this->db->query($query2,$values2);
 
       }
