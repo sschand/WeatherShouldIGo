@@ -93,7 +93,8 @@ class Trip extends CI_Controller {
      //Twilio Sending Message grabs
      $friendNumber = $this->user->getPhoneByUserId($info);
      $trip = $this->user->getTripNameByTripId($this->session->userdata('display_trip_id'));
-     //$this->sendMessageForTrip($friendNumber, $trip);
+    //  var_dump($this->session->userdata('display_trip_id'));
+     $this->sendMessageForTrip($friendNumber, $trip);
 
      $this->session->unset_userdata('friends');
 

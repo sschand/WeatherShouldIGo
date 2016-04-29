@@ -69,6 +69,9 @@
       </div>
     </div>
 
+
+    <?php var_dump($this->session->userdata('userCity')) ?>
+    <!-- Start of Content -->
     <!-- Container starts here -->
     <div class="container">
         <!-- My Trips -->
@@ -187,7 +190,7 @@
         </div>
         <!-- ^ is the end of the row -->
 
-        
+
     </div>
     <!-- End of Container -->
 
