@@ -43,9 +43,19 @@ class User extends CI_Model {
       }
 
       function friend_trip($id){
-        $query ="SELECT trips.city_name, trips.trip_id FROM trips_users JOIN trips ON trips.trip_id = trips_users.trip_id
-        WHERE trips_users.user_id != ?
-        GROUP BY trips.trip_id";
+        // $query ="SELECT trips.city_name, trips.trip_id FROM trips_users JOIN trips ON trips.trip_id = trips_users.trip_id
+        // WHERE trips_users.user_id != ?
+        // GROUP BY trips.trip_id";
+
+        $query ="SELECT trips.city_name, trips.trip_id
+FROM trips
+JOIN trips_users
+ON trips.trip_id = trips_users.trip_id
+JOIN users
+ON users.user_id = trips_users.user_id
+WHERE users.user_id IN (SELECT users.user_id FROM friends JOIN users ON friends.user_id = users.user_id WHERE friends.friend_id = ?)
+GROUP BY trips.trip_id;";
+
         $values = array($id);
         return $this->db->query($query,$values)->result_array();
       }
