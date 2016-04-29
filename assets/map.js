@@ -44,7 +44,7 @@ $(document).ready(function() {
 
           $.get('/login/validate_user/'+user+'/'+password, function(res) {
               if(res!= 'User and email correct'){
-                  $("#myModalLogin .modal-body .error").html('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>'+res+'</strong></div>');
+                  $("#myModalLogin .modal-body .error").html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>'+res+'</strong></div>');
               }else{
                   $("#myModalLogin .modal-body .error").html('');
                   location.reload();
@@ -52,14 +52,7 @@ $(document).ready(function() {
           });
     });
 
-    // $(document).on("click",".plan a",function(e) {
-    //     e.preventDefault();
-    //     var user = <?php echo json_encode($this->session->userdata('user_id')) ?>;
-    //     console.log(user);
-
-    //     alert("Must be logged in to plan a trip!");
-    // });
-
+   
 })
 
 //Function for map initialization and getting weather by distance

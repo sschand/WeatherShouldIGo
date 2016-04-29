@@ -6,6 +6,7 @@ $route['map'] = "main/map";
 $route['login/validate_user/(:any)/(:any)'] = "login/validate_user/$1/$2";
 
 $route['sms'] = 'main/sms';
+$route['main/get_usernames/(:num)'] = 'main/get_usernames/$1';
 
 $route['404_override'] = '';
 

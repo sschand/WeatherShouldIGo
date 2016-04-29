@@ -7,25 +7,35 @@ class Trip extends CI_Controller {
         //$this->load->library('PHPRequests');
         $this->load->model('user');
     }
-    public function index()
+    public function index() // must be logged in to see trips!!
     {
-      $trip = $this->user->get_trip($this->session->userdata('user_id'));
-      $friendTrip = $this->user->friend_trip($this->session->userdata('user_id'));
-      for($i=0;$i < count($friendTrip); $i++)
-      {
-        $peopleCount = $this->user->get_people($friendTrip[$i]['trip_id']);
-        $cityID = $friendTrip[$i]['trip_id'];
-        $this->session->set_userdata($cityID, $peopleCount);
-      }
+        if($this->session->userdata('user_id')){
 
-      $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
-      $this->session->set_userdata('friends', $friends);
+            $trip = $this->user->get_trip($this->session->userdata('user_id'));
+            $friendTrip = $this->user->friend_trip($this->session->userdata('user_id'));
+            for($i=0;$i < count($friendTrip); $i++)
+            {
+              $peopleCount = $this->user->get_people($friendTrip[$i]['trip_id']);
+              $cityID = $friendTrip[$i]['trip_id'];
+              $this->session->set_userdata($cityID, $peopleCount);
+            }
 
-      $trip = $this->user->get_trip($this->session->userdata('user_id'));
-      $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip);
+            $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
+            $this->session->set_userdata('friends', $friends);
 
-      //var_dump($data);
-      $this->load->view('trip',$data);
+            $trip = $this->user->get_trip($this->session->userdata('user_id'));
+
+            $usernames = $this->user->getUsersByUsername($this->session->userdata('user_id'));
+
+            $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip, 'usernames' => $usernames);
+
+            //var_dump($data);
+            $this->load->view('trip',$data);
+        } else{
+            $this->session->set_flashdata('login', 'You must be logged in to view the Trips page!');
+            redirect(base_url());
+        }
+
     }
 
     public function create_trip(){
@@ -42,8 +52,10 @@ class Trip extends CI_Controller {
       $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
       $this->session->set_userdata('friends', $friends);
 
+
+      $usernames = $this->user->getUsersByUsername($this->session->userdata('user_id'));
       //var_dump($info);
-      $data = array('tripinfo'=>$info,'triplist'=> $trip,'friendTripList'=> $friendTrip);
+      $data = array('tripinfo'=>$info,'triplist'=> $trip,'friendTripList'=> $friendTrip, 'usernames' => $usernames);
       $this->load->view('trip',$data);
 
     }
@@ -96,7 +108,6 @@ class Trip extends CI_Controller {
       $this->user->remove_friend($friend_id);
       redirect(base_url().'trip/getTripByid/'.$this->session->userdata('display_trip_id'));
     }
-
 }
 
 //end of main controller
