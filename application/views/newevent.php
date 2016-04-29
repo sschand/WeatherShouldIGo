@@ -31,7 +31,7 @@
 	            <span class="icon-bar"></span>
 	          </button>
 
-	          <a class="navbar-brand" href="#">Windstagra'm</a>
+	          <a class="navbar-brand" href="#">#weather should i go?</a>
 	        </div>
           <div id="navbar" class="collapse navbar-collapse navbar-right ">
   	        <ul class="nav navbar-nav">
