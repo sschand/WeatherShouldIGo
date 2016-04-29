@@ -26,7 +26,7 @@ class Trip extends CI_Controller {
             $trip = $this->user->get_trip($this->session->userdata('user_id'));
 
             $usernames = $this->user->getUsersByUsername($this->session->userdata('user_id'));
-            
+
             $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip, 'usernames' => $usernames);
 
             //var_dump($data);
@@ -107,14 +107,6 @@ class Trip extends CI_Controller {
     public function remove_friend($friend_id){
       $this->user->remove_friend($friend_id);
       redirect(base_url().'trip/getTripByid/'.$this->session->userdata('display_trip_id'));
-    }
-
-
-    public function get_usernames(){
-        $user_id = $this->session->userdata('user_id');
-        
-        $usernames = $this->user->getUsersByUsername($user_id);
-        echo json_encode($usernames);
     }
 }
 

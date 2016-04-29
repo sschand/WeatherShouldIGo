@@ -52,12 +52,7 @@ $(document).ready(function() {
           });
     });
 
-    // $(document).on("click","#add_friends",function(e){
-    //     $.get('/trip/get_usernames', function(res){
-    //         console.log(res);
-    //     });
-    // });
-
+   
 })
 
 //Function for map initialization and getting weather by distance
