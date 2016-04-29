@@ -291,6 +291,15 @@ input.inviteFriends {
     background: rgba(50,50,50,1);
 }
 
+.flightLink{
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 3px 6px;
+}
+
+.date:nth-child(5){
+    margin:1em 0;
+}
 #loading{
   text-align: center;
 }

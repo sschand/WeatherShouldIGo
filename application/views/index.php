@@ -75,7 +75,7 @@
 	      </div>
 	    </div>
 	  </nav>
-
+	  <?php //var_dump($this->session->userdata('userCity')); ?>
 		<!--  login modal-->
 		<div id="myModalLogin" class="modal fade" tabindex="-1" role="dialog">
 			<div class="modal-dialog">

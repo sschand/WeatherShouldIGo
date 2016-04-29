@@ -46,10 +46,14 @@
 
 		$this->session->set_userdata('user_id',$user['user_id']);
 		$this->session->set_userdata('user_name',$user['user_name']);
-		redirect(base_url().'/main');
+		// redirect(base_url().'/main');
 	}
 
-	public function validate_user($email, $password){
+	public function validate_user($email, $password, $city){
+
+        $this->session->set_userdata('userCity',$city);
+        // var_dump($city);
+        // var_dump($this->session->userdata('userCity'));
 		$user = $this->user->store_user_login($email);
 		$response = '';
 

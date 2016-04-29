@@ -70,6 +70,8 @@
     </div>
 
 
+    <?php var_dump($this->session->userdata('userCity')) ?>
+    <!-- Start of Content -->
     <!-- Container starts here -->
     <div class="container">
         <!-- My Trips -->
@@ -86,7 +88,8 @@
                 <ul class="list-group">
                   <?php foreach ($triplist as $trip): ?>
                     <li class="list-group-item">
-                      <a href="/trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
+                            <a class="myTripButton" href="/trip/getTripByid/<?=$trip['trip_id']?>">#<?= strtoupper($trip['city_name'])?></a><span class="badge"><?= count($this->session->userdata($trip['trip_id']));?></span>
+
                     </li>
 
                   <?php endforeach; ?>
@@ -96,7 +99,7 @@
 
             <div class="friendsTrips">
                 <!-- Trips that friends are going to -->
-                <h6>Trips that your friends are going</h6>
+                <h6>Trips that your friends are going to</h6>
                 <ul class="list-group">
                   <?php foreach ($friendTripList as $trip): ?>
                     <li class="list-group-item">
@@ -117,11 +120,13 @@
               <p class="destination">TO: #<?= strtoupper($tripinfo[0]['city_name'])?></p>
               <span class="date">DATE: <?php $start_date = strtotime($tripinfo[0]['start_date']);
               $newformat = date('d M - Y',$start_date);
+              $linkDate = date('m/d/Y', $start_date);
               echo $newformat;
                ?></span>
               <span class="date">DESCRIPTION: <?= $tripinfo[0]['description']?></span>
               <!-- FOR VADIM: trip flight link -->
-              <span class="date">TRAVEL OPTIONS: <a href="#" title="">Flights</a></span>
+              <span class="date"><a class="flightLink" target="_blank" href="<?= 'https:www.expedia.com/Flights-Search?trip=oneway&leg1=from:'.$this->session->userdata('userAirport').',to:'.$this->session->userdata('destinationAirport').',departure:'.$linkDate.'TANYT&passengers=children:0,adults:1,seniors:0,infantinlap:N&mode=search' ?>" title="">Check Flight Prices</a>
+              </span>
 
               <!-- If Nobody is going to Trip... -->
               <?php if(count($tripinfo) == 0){
@@ -185,12 +190,7 @@
         </div>
         <!-- ^ is the end of the row -->
 
-        <div class="row">
-          <div class="col-md-5">
-            <!-- Moved to the first row, under the left col-md-5 -->
-            <?php //var_dump($this->session->userdata('user_name')); ?>
-          </div>  <!-- End col-md-5 -->
-      </div> <!-- End of the Second row -->
+
     </div>
     <!-- End of Container -->
 

@@ -116,7 +116,7 @@ class User extends CI_Model {
       }
       function getTripNameByTripId($tripId) {
         $query = "SELECT city_name, start_date, description FROM trips_users JOIN trips
-                    ON trips_users.trip_id = trips.trip_id WHERE trips.trip_id = 2
+                    ON trips_users.trip_id = trips.trip_id WHERE trips.trip_id = ?
                     GROUP BY trips.trip_id";
 
         $input = array($tripId);
@@ -128,8 +128,8 @@ class User extends CI_Model {
           $query = "SELECT user_name, user_id FROM users where user_id!=? AND user_id not in (SELECT friends.user_id as friend_id from users JOIN friends on friends.friend_id=users.user_id JOIN users as user_friends on friends.user_id = user_friends.user_id WHERE users.user_id = ?)";
           $values = array($userNotToGet, $userNotToGet);
 
-          return $this->db->query($query, $values)->result_array();        
-      } 
+          return $this->db->query($query, $values)->result_array();
+      }
 
 
    }
