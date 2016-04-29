@@ -58,7 +58,7 @@
 	          </li>
 						<li class="page-scroll">
 							 <?php if($this->session->userdata('user_name')){
-								echo "<a href='/Trip'>My Trips <i class='fa fa-suitcase' aria-hidden='true'></i></a>";
+								echo "<a href='/trip'>My Trips <i class='fa fa-suitcase' aria-hidden='true'></i></a>";
 							} ?>
 	          </li>
 

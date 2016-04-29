@@ -114,7 +114,10 @@
               $newformat = date('d M - Y',$start_date);
               echo $newformat;
                ?></span>
-              <span>DESCRIPTION: <?= $tripinfo[0]['description']?></span>
+              <span class="date">DESCRIPTION: <?= $tripinfo[0]['description']?></span>
+              <!-- FOR VADIM: trip flight link -->
+              <span class="date">TRAVEL OPTIONS: <a href="#" title="">Flights</a></span>
+
               <!-- If Nobody is going to Trip... -->
               <?php if(count($tripinfo) == 0){
                 echo "<p>You are going alone invite friends</p><a class='btn btn-default' href='/Trip/add_friend'>Invite Friends</a>";
