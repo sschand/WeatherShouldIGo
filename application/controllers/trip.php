@@ -74,7 +74,6 @@ class Trip extends CI_Controller {
     //   var_dump($destinationCity);
 
       $finalDestinationCity = $this->getAirport($destinationCity);
-
       $this->session->set_userdata('destinationAirport', $finalDestinationCity);
 
     //   var_dump($this->session->userdata('destinationAirport'));
