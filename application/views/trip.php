@@ -39,7 +39,7 @@
   	            <a href="#page-top"></a>
   	          </li>
               <li class="page-scroll"><a href="/main">Home <i class="fa fa-home" aria-hidden="true"></i></a></li>
-              <li class="page-scroll" ><a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">Add Freinds <i class="fa fa-plus" aria-hidden="true"></i></a></li>
+              <li class="page-scroll" ><a href="#" id="add_friends" data-toggle="modal" data-target=".bs-example-modal-sm">Add Friends <i class="fa fa-plus" aria-hidden="true"></i></a></li>
 	            <li class="page-scroll"><a href="/login/logoff">Log out <i class="fa fa-power-off" aria-hidden="true"></i></a></li>
 	          </ul>
 	        </div><!--/.nav-collapse -->
