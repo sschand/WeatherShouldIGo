@@ -36,15 +36,14 @@ class User extends CI_Model {
       }
 
       function get_trip($id){
-        $query ="SELECT trips.city_name,trips.trip_id FROM trips_users JOIN trips ON trips.trip_id = trips_users.trip_id
-        WHERE user_id=?";
+        $query ="SELECT trips.city_name,trips.trip_id FROM trips_users JOIN trips ON trips.trip_id=trips_users.trip_id WHERE trips_users.user_id=?";
         $values = array($id);
         return $this->db->query($query,$values)->result_array();
       }
 
       function friend_trip($id){
         $query ="SELECT trips.city_name, trips.trip_id FROM trips_users JOIN trips ON trips.trip_id = trips_users.trip_id
-        WHERE user_id != ?
+        WHERE trips_users.user_id != ?
         GROUP BY trips.trip_id";
         $values = array($id);
         return $this->db->query($query,$values)->result_array();
