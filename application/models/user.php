@@ -125,10 +125,10 @@ class User extends CI_Model {
       }
 
       function getUsersByUsername($userNotToGet){
-          $query = "SELECT user_name, user_id FROM users where user_id!=? AND user_id not in (SELECT friends.friend_id from users JOIN friends on friends.friend_id=users.user_id LEFT JOIN users as user_friends on friends.user_id = user_friends.user_id WHERE users.user_id = ?)";
+          $query = "SELECT user_name, user_id FROM users where user_id!=? AND user_id not in (SELECT friends.user_id as friend_id from users JOIN friends on friends.friend_id=users.user_id JOIN users as user_friends on friends.user_id = user_friends.user_id WHERE users.user_id = ?)";
           $values = array($userNotToGet, $userNotToGet);
 
-          return $this->db->query($query, $input)->result_array();        
+          return $this->db->query($query, $values)->result_array();        
       } 
 
 

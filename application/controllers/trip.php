@@ -24,7 +24,10 @@ class Trip extends CI_Controller {
             $this->session->set_userdata('friends', $friends);
 
             $trip = $this->user->get_trip($this->session->userdata('user_id'));
-            $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip);
+
+            $usernames = $this->user->getUsersByUsername($this->session->userdata('user_id'));
+            
+            $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip, 'usernames' => $usernames);
 
             //var_dump($data);
             $this->load->view('trip',$data);
@@ -49,8 +52,10 @@ class Trip extends CI_Controller {
       $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
       $this->session->set_userdata('friends', $friends);
 
+
+      $usernames = $this->user->getUsersByUsername($this->session->userdata('user_id'));
       //var_dump($info);
-      $data = array('tripinfo'=>$info,'triplist'=> $trip,'friendTripList'=> $friendTrip);
+      $data = array('tripinfo'=>$info,'triplist'=> $trip,'friendTripList'=> $friendTrip, 'usernames' => $usernames);
       $this->load->view('trip',$data);
 
     }
@@ -104,6 +109,13 @@ class Trip extends CI_Controller {
       redirect(base_url().'trip/getTripByid/'.$this->session->userdata('display_trip_id'));
     }
 
+
+    public function get_usernames(){
+        $user_id = $this->session->userdata('user_id');
+        
+        $usernames = $this->user->getUsersByUsername($user_id);
+        echo json_encode($usernames);
+    }
 }
 
 //end of main controller

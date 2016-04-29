@@ -29,11 +29,6 @@ class Main extends CI_Controller {
         $this->load->view('twilio');
     }
 
-    public function get_usernames(){
-        $user_id = $this->session->userdata('user_id');
-        $usernames = $this->User->getUsersByUsername($user_id);
-        echo $usernames;
-    }
 }
 
 //end of main controller

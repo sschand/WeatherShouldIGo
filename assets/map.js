@@ -52,11 +52,11 @@ $(document).ready(function() {
           });
     });
 
-    $(document).on("click","#add_friend",function(){
-       $.get('/main/get_usernames', function(res){
-            console.log(res);
-        });
-    });
+    // $(document).on("click","#add_friends",function(e){
+    //     $.get('/trip/get_usernames', function(res){
+    //         console.log(res);
+    //     });
+    // });
 
 })
 
