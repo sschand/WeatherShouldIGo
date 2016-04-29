@@ -260,8 +260,10 @@ function initMap() {
                     $(".trip").html('');
                     $(".details").html('<!-- Name of the City --><h4 class="name"></h4>');
                     $(".spec_det").html('<div class="deets twelve columns" style="width: 100%"></div>');
+                    $('.firstWordNameTitle').html('Weather');
 
                 } else {
+                    $('.firstWordNameTitle').html(weatherToMatch);
                     if (weatherToMatch == 'sun') {
                         weatherToMatch = 'Clear';
                     }
@@ -274,7 +276,7 @@ function initMap() {
                             markers[i].setMap(null);
                         }
                     }
-                }
+                }   //End on click of weather button
 
                 // markers[0].setMap(map);
                 // console.log(this.value);
