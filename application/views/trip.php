@@ -62,7 +62,7 @@
                     <?php endforeach; ?>
               </select>
             <!-- <input name="user_name" class="show-text" type =Text placeholder="user name"> -->
-            <input type=Submit value="Add Friend">
+            <input class="add-friend" type=Submit value="Add Friend">
           </form>
         </div>
       </div>
