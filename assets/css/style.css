@@ -290,3 +290,7 @@ input.inviteFriends {
     padding: 0 0.3em;
     background: rgba(50,50,50,1);
 }
+
+#loading{
+  text-align: center;
+}
