@@ -222,6 +222,13 @@ background-size: 40px;
     border: darkgray;
     background: linear-gradient( 364deg, black, darkgray );
 }
+
+.alert.alert-danger.alert-dismissible {
+    color: white !important;
+    border: black !important;
+    background: linear-gradient( 364deg, black, darkred) !important;
+}
+
 .alert{
 	margin-bottom: 5px !important;
 }

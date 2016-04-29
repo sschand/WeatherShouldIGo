@@ -9,23 +9,30 @@ class Trip extends CI_Controller {
     }
     public function index()
     {
-      $trip = $this->user->get_trip($this->session->userdata('user_id'));
-      $friendTrip = $this->user->friend_trip($this->session->userdata('user_id'));
-      for($i=0;$i < count($friendTrip); $i++)
-      {
-        $peopleCount = $this->user->get_people($friendTrip[$i]['trip_id']);
-        $cityID = $friendTrip[$i]['trip_id'];
-        $this->session->set_userdata($cityID, $peopleCount);
-      }
+        if($this->session->userdata('user_id')){
 
-      $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
-      $this->session->set_userdata('friends', $friends);
+            $trip = $this->user->get_trip($this->session->userdata('user_id'));
+            $friendTrip = $this->user->friend_trip($this->session->userdata('user_id'));
+            for($i=0;$i < count($friendTrip); $i++)
+            {
+              $peopleCount = $this->user->get_people($friendTrip[$i]['trip_id']);
+              $cityID = $friendTrip[$i]['trip_id'];
+              $this->session->set_userdata($cityID, $peopleCount);
+            }
 
-      $trip = $this->user->get_trip($this->session->userdata('user_id'));
-      $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip);
+            $friends = $this->user->add_friend($this->session->userdata('user_id'),$this->session->userdata('display_trip_id'));
+            $this->session->set_userdata('friends', $friends);
 
-      //var_dump($data);
-      $this->load->view('trip',$data);
+            $trip = $this->user->get_trip($this->session->userdata('user_id'));
+            $data = array('triplist'=> $trip, 'friendTripList'=> $friendTrip);
+
+            //var_dump($data);
+            $this->load->view('trip',$data);
+        } else{
+            $this->session->set_flashdata('login', 'You must be logged in to view the Trips page!');
+            redirect(base_url());
+        }
+
     }
 
     public function create_trip(){
