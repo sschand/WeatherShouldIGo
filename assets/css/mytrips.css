@@ -1,6 +1,5 @@
 html{
   width:100%;
-  height: 100%;
 }
 
 .list-group-item{
@@ -39,6 +38,7 @@ table td{
 
 body{
   padding:200px 0 !important;
+  margin: 0 auto;
 }
 
 select{
