@@ -297,7 +297,7 @@ function initMap() {
 function getInstagram(name, weather) {
 
   name = name.split(" ");
-  name = name.join('');
+  name = name.join('').toLowerCase();
   if(weather == "Clouds" || weather =="Clear"){
     weather = "sun";
   } else if(weather == "Haze" || weather == "Mist"){
