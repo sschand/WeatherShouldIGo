@@ -28,6 +28,20 @@ class Main extends CI_Controller {
     public function sms() {
         $this->load->view('twilio');
     }
+
+
+
+
+
+
+
+    public function test() {
+        $this->load->view('travelAirportGrabber');
+    }
+    public function nearestAirport($data) {
+        var_dump($data);
+        $this->load->view('travelAirportGrabber', array('data' => $data));
+    }
 }
 
 //end of main controller
