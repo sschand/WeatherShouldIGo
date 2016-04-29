@@ -7,7 +7,7 @@ class Trip extends CI_Controller {
         //$this->load->library('PHPRequests');
         $this->load->model('user');
     }
-    public function index()
+    public function index() // must be logged in to see trips!!
     {
         if($this->session->userdata('user_id')){
 
