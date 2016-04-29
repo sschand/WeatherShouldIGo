@@ -56,7 +56,6 @@
           <button type="button" class="close friends" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <p>Add friends by User Name</p>
           <form action="/trip/add_friend_to_list" method="post">
-          <!-- <?php var_dump($usernames) ?> -->
               <select name="user_name" class="user_name u-full-width">
                     <?php foreach ($usernames as $username): ?>
                          <option id="<?=$username['user_id']?>" value="<?=$username['user_name']?>"><?=$username['user_name']?></option>
@@ -70,7 +69,6 @@
     </div>
 
 
-    <?php var_dump($this->session->userdata('userCity')) ?>
     <!-- Start of Content -->
     <!-- Container starts here -->
     <div class="container">
